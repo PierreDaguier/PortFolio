@@ -2,6 +2,7 @@ import React from "react";
 import "./stars.scss";
 import Typed from "react-typed";
 import BackgroundVideo from "./background.webm"
+import cvPdf from '../img/Pierre_Daguier_CV.pdf';
 
 
 class Intro extends React.Component {
@@ -40,7 +41,7 @@ class Intro extends React.Component {
               <p className="pt-3">
               <a
                 className="btn btn-primary btn js-scroll px-4"
-                href="../documents/Pierre_Daguier_CV.pdf"
+                href={cvPdf}
                 download="Pierre_Daguier_CV.pdf"
                 role="button"
               >
