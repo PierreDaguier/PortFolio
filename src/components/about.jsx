@@ -52,7 +52,7 @@ class About extends React.Component {
         {
           id: "first-p-about",
           content:
-            "A capable and driven full-stack web designer with a specialization in blockchain innovations, I bring two a long time of profitable encounter to the table. As of late migrating to Brisbane, Australia, I am presently excitedly seeking after modern work openings."
+            "A capable and driven full-stack web developer with a specialization in blockchain innovations, I bring two a long time of profitable encounter to the table. As of late migrating to Brisbane, Australia, I am presently excitedly seeking after modern work openings."
         },
         {
           id: "second-p-about",

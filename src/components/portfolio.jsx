@@ -41,14 +41,14 @@ class Portfolio extends React.Component {
                           </span>
                         </div>
                         <div className="w-more">
-                          <span >
+                          <a href="https://www.cryptocactus.net" target="_blank" rel="noopener noreferrer">
                             www.cryptocactus.net
-                          </span>
+                          </a>
                         </div>
                         <div className="w-more">
-                          <span >
-                          https://github.com/PierreDaguier/CryptoCactus
-                          </span>
+                          <a href="https://github.com/PierreDaguier/CryptoCactus" target="_blank" rel="noopener noreferrer">
+                            https://github.com/PierreDaguier/CryptoCactus
+                          </a>
                         </div>
                       </div>
                       <div className="col-sm-4">
@@ -58,6 +58,7 @@ class Portfolio extends React.Component {
                       </div>
                     </div>
                   </div>
+
                 </a>
                 <a
                   href={cryptocactus2}

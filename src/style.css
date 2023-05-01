@@ -765,6 +765,18 @@ PORTFOLIO
   height:20.6rem;
   object-fit:cover;
 }
+
+@media (max-width: 767px) {
+  .image-container {
+    width: 100%;
+  }
+  
+  .framework-image {
+    width: calc((100% - 10px * 2) / 3);
+    height: auto;
+    margin: 5px;
+  }
+}
 /* .loading-animation {
   height: 18rem;
   margin:auto;
