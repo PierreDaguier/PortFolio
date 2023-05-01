@@ -772,7 +772,7 @@ PORTFOLIO
   }
   
   .framework-image {
-    width: calc((100% - 10px * 2) / 3);
+    width: calc((100% - 10px * 2) / 4);
     height: auto;
     margin: 5px;
   }

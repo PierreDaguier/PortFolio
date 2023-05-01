@@ -32,32 +32,38 @@ class Portfolio extends React.Component {
                     <img src={cryptocactus1} alt="" className="img-fluid cryptocactus" />
                   </div>
                   <div className="work-content">
-                    <div className="row">
-                      <div className="col-sm-8">
-                        <h2 className="w-title">CryptoCactus</h2>
-                        <div className="w-more">
-                          <span className="w-ctegory">
-                            Solidity Vue.js/Vuetify Node.js
-                          </span>
-                        </div>
-                        <div className="w-more">
-                          <a href="https://www.cryptocactus.net" target="_blank" rel="noopener noreferrer">
-                            www.cryptocactus.net
-                          </a>
-                        </div>
-                        <div className="w-more">
-                          <a href="https://github.com/PierreDaguier/CryptoCactus" target="_blank" rel="noopener noreferrer">
-                            https://github.com/PierreDaguier/CryptoCactus
-                          </a>
-                        </div>
+                  <div className="row">
+                    <div className="col-sm-8">
+                      <h2 className="w-title">CryptoCactus</h2>
+                      <div className="w-more">
+                        <span className="w-ctegory">
+                          Solidity Vue.js/Vuetify Node.js
+                        </span>
                       </div>
-                      <div className="col-sm-4">
-                        <div className="w-like">
-                          <span className="ion-ios-plus-outline"></span>
-                        </div>
+                      <div className="w-more">
+                        <a href="https://www.cryptocactus.net" target="_blank" rel="noopener noreferrer">
+                          www.cryptocactus.net
+                        </a>
+                      </div>
+                      <div className="w-more">
+                        <a href="https://github.com/PierreDaguier/CryptoCactus" target="_blank" rel="noopener noreferrer">
+                          https://github.com/PierreDaguier/CryptoCactus
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-sm-4">
+                      <div className="w-like">
+                        <span className="ion-ios-plus-outline"></span>
+                      </div>
+                      <div className="w-like">
+                        <a href="https://www.cryptocactus.net" target="_blank" rel="noopener noreferrer">
+                          Visit website
+                        </a>
                       </div>
                     </div>
                   </div>
+                </div>
+
 
                 </a>
                 <a
