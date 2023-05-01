@@ -31,9 +31,9 @@ class Portfolio extends React.Component {
                   <div className="work-img">
                     <img src={cryptocactus1} alt="" className="img-fluid cryptocactus" />
                   </div>
-                  <div className="work-content">
+                  <div className="work-content text-center">
                   <div className="row">
-                    <div className="col-sm-8">
+                    <div className="col-sm-12">
                       <h2 className="w-title">CryptoCactus</h2>
                       <div className="w-more">
                         <span className="w-ctegory">
@@ -51,17 +51,14 @@ class Portfolio extends React.Component {
                         </a>
                       </div>
                     </div>
-                    <div className="col-sm-4">
-                      <div className="w-like">
-                        <span className="ion-ios-plus-outline"></span>
-                      </div>
-                      <div className="w-like">
+
+
+                  </div>
+                  <div className="btn btn-primary btn js-scroll px-4 mt-3 align-center text-center" role="button">
                         <a href="https://www.cryptocactus.net" target="_blank" rel="noopener noreferrer">
-                          Visit website
+                          Visit Cryptocactus
                         </a>
                       </div>
-                    </div>
-                  </div>
                 </div>
 
 
