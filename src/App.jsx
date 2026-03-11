@@ -55,6 +55,15 @@ const projects = [
     tech: ['React', 'TypeScript', 'Fastify', 'OpenTelemetry', 'Prometheus', 'Grafana', 'Loki', 'Tempo'],
     demoUrl: null,
     repoUrl: 'https://github.com/PierreDaguier/observability-command-center-demo'
+  },
+  {
+    title: 'AI Automation Command Center',
+    label: 'AI Agents',
+    summary:
+      'Enterprise-focused automation platform combining n8n orchestration, AI agent execution, human-in-the-loop approvals, and audit-ready operation tracking.',
+    tech: ['n8n', 'Next.js', 'TypeScript', 'Python', 'PostgreSQL', 'Redis', 'OpenTelemetry', 'Docker'],
+    demoUrl: null,
+    repoUrl: 'https://github.com/PierreDaguier/ai-automation-command-center'
   }
 ];
 
