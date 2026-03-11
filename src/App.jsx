@@ -30,22 +30,31 @@ const skillGroups = [
 
 const projects = [
   {
-    title: 'JCU Weather Prediction',
-    label: 'AI Product',
+    title: 'Event-Driven Automation Platform',
+    label: 'Automation',
     summary:
-      'Production-ready weather prediction platform with React frontend, Go/FastAPI backend path, and ML inference workflow.',
-    tech: ['React', 'Go', 'Python', 'FastAPI', 'Machine Learning'],
-    liveUrl: 'https://jcu-weather-prediction.netlify.app',
-    sourceUrl: 'https://github.com/PierreDaguier/JCU-Weather-Prediction'
+      'Client-facing B2B workflow automation demo with secure webhook ingestion, rule engine, retries with DLQ, and observability-ready operations dashboard.',
+    tech: ['Next.js', 'TypeScript', 'Go', 'PostgreSQL', 'Redis', 'RabbitMQ', 'OpenTelemetry'],
+    demoUrl: null,
+    repoUrl: 'https://github.com/PierreDaguier/event-driven-automation-platform'
   },
   {
-    title: 'CryptoCactus',
-    label: 'Blockchain',
+    title: 'Production-Ready Go Service Template',
+    label: 'Backend',
     summary:
-      'Web3 platform featuring smart contracts and product UX built for real user interaction and ecosystem growth.',
-    tech: ['Solidity', 'Vue.js', 'Node.js', 'Smart Contracts'],
-    liveUrl: 'https://www.cryptocactus.net',
-    sourceUrl: 'https://github.com/PierreDaguier/CryptoCactus'
+      'Go microservice template built with clean architecture, auth, rate limiting, observability, and an operations control panel for stakeholder visibility.',
+    tech: ['Go', 'React', 'Vite', 'Prometheus', 'Grafana', 'Tempo', 'Loki', 'Docker'],
+    demoUrl: null,
+    repoUrl: 'https://github.com/PierreDaguier/go-service-template-pro'
+  },
+  {
+    title: 'Observability Command Center Demo',
+    label: 'Observability',
+    summary:
+      'Premium command center for logs-metrics-traces correlation, incident timeline, and replay scenarios, designed for fast non-technical stakeholder understanding.',
+    tech: ['React', 'TypeScript', 'Fastify', 'OpenTelemetry', 'Prometheus', 'Grafana', 'Loki', 'Tempo'],
+    demoUrl: null,
+    repoUrl: 'https://github.com/PierreDaguier/observability-command-center-demo'
   }
 ];
 
@@ -240,8 +249,12 @@ function App() {
                   ))}
                 </div>
                 <div className="project-actions">
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="btn btn-solid">Visit</a>
-                  <a href={project.sourceUrl} target="_blank" rel="noreferrer" className="btn btn-outline">Source</a>
+                  {project.demoUrl ? (
+                    <a href={project.demoUrl} target="_blank" rel="noreferrer" className="btn btn-solid">Live demo</a>
+                  ) : null}
+                  <a href={project.repoUrl} target="_blank" rel="noreferrer" className={project.demoUrl ? 'btn btn-outline' : 'btn btn-solid'}>
+                    Repository
+                  </a>
                 </div>
               </article>
             ))}
