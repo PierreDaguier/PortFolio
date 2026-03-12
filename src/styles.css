@@ -478,7 +478,16 @@ h2 span {
   width: 1.16rem;
   height: 1.16rem;
   object-fit: contain;
-  filter: drop-shadow(0 0 6px rgba(72, 255, 130, 0.24));
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(86%)
+    sepia(36%)
+    saturate(1866%)
+    hue-rotate(74deg)
+    brightness(101%)
+    contrast(101%)
+    drop-shadow(0 0 6px rgba(72, 255, 130, 0.32));
 }
 
 @keyframes marquee-left {
