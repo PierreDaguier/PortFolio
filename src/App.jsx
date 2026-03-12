@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import truffleLogo from './img/truffle.png';
+import truffleLogo from './img/skills/truffle.svg';
 import javascriptLogo from './img/skills/javascript.svg';
 import typescriptLogo from './img/skills/typescript.svg';
 import pythonLogo from './img/skills/python.svg';
