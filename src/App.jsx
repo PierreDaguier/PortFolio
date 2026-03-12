@@ -40,6 +40,38 @@ const skillGroups = [
   }
 ];
 
+const logoRows = [
+  [
+    { name: 'JavaScript', slug: 'javascript', color: 'F7DF1E' },
+    { name: 'TypeScript', slug: 'typescript', color: '3178C6' },
+    { name: 'Python', slug: 'python', color: '3776AB' },
+    { name: 'Golang', slug: 'go', color: '00ADD8' },
+    { name: 'ReactJS', slug: 'react', color: '61DAFB' },
+    { name: 'VueJS', slug: 'vuedotjs', color: '4FC08D' },
+    { name: 'Flutter', slug: 'flutter', color: '02569B' },
+    { name: 'GraphQL', slug: 'graphql', color: 'E10098' },
+    { name: 'Solidity', slug: 'solidity', color: 'FFFFFF' },
+    { name: 'Truffle', slug: 'truffle', color: '5E464D' }
+  ],
+  [
+    { name: 'MariaDB', slug: 'mariadb', color: '003545' },
+    { name: 'PostgreSQL', slug: 'postgresql', color: '4169E1' },
+    { name: 'MongoDB', slug: 'mongodb', color: '47A248' },
+    { name: 'RabbitMQ', slug: 'rabbitmq', color: 'FF6600' },
+    { name: 'Docker', slug: 'docker', color: '2496ED' },
+    { name: 'Jenkins', slug: 'jenkins', color: 'D24939' },
+    { name: 'n8n', slug: 'n8n', color: 'EA4B71' },
+    { name: 'OpenAPI', slug: 'openapiinitiative', color: '6BA539' },
+    { name: 'Prometheus', slug: 'prometheus', color: 'E6522C' },
+    { name: 'Grafana', slug: 'grafana', color: 'F46800' },
+    { name: 'Linux', slug: 'linux', color: 'FCC624' },
+    { name: 'Apache', slug: 'apache', color: 'D22128' },
+    { name: 'Nginx', slug: 'nginx', color: '009639' }
+  ]
+];
+
+const logoUrl = (slug, color) => `https://cdn.simpleicons.org/${slug}/${color}`;
+
 const projects = [
   {
     title: 'Event-Driven Automation Platform',
@@ -251,6 +283,20 @@ function App() {
                   ))}
                 </div>
               </article>
+            ))}
+          </div>
+          <div className="logo-marquee" aria-label="Technology logos marquee">
+            {logoRows.map((row, rowIndex) => (
+              <div className="logo-row-mask" key={`logo-row-${rowIndex}`}>
+                <div className={`logo-row-track ${rowIndex === 1 ? 'logo-row-track-reverse' : ''}`}>
+                  {[...row, ...row].map((logo, index) => (
+                    <span className="logo-badge" key={`${logo.slug}-${index}`}>
+                      <img src={logoUrl(logo.slug, logo.color)} alt={`${logo.name} logo`} loading="lazy" />
+                      <span>{logo.name}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </section>
