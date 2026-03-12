@@ -102,6 +102,24 @@ const HERO_TYPEWRITER_TITLES = [
   'API integration engineer',
   'DevOps / Cybersecurity engineer'
 ];
+const CYBER_WATCH_ENDPOINT = '/.netlify/functions/cyber-watch';
+
+const severityClassName = (severity) => {
+  const value = String(severity || '').toLowerCase();
+  if (value.includes('critical') || value.includes('exploited')) {
+    return 'severity-critical';
+  }
+  if (value.includes('high')) {
+    return 'severity-high';
+  }
+  if (value.includes('medium')) {
+    return 'severity-medium';
+  }
+  if (value.includes('low')) {
+    return 'severity-low';
+  }
+  return 'severity-info';
+};
 
 const projects = [
   {
@@ -242,6 +260,12 @@ function App() {
     reducedMotion: false
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cyberWatch, setCyberWatch] = useState({
+    loading: true,
+    error: '',
+    items: [],
+    generatedAt: ''
+  });
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -311,6 +335,54 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    let isMounted = true;
+    const abortController = new AbortController();
+
+    const loadCyberWatch = async () => {
+      try {
+        const response = await fetch(CYBER_WATCH_ENDPOINT, {
+          signal: abortController.signal
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed with status ${response.status}`);
+        }
+
+        const payload = await response.json();
+
+        if (!isMounted) {
+          return;
+        }
+
+        setCyberWatch({
+          loading: false,
+          error: '',
+          items: Array.isArray(payload.items) ? payload.items.slice(0, 8) : [],
+          generatedAt: payload.generatedAt || ''
+        });
+      } catch (error) {
+        if (!isMounted || error.name === 'AbortError') {
+          return;
+        }
+
+        setCyberWatch({
+          loading: false,
+          error: 'Cyber watch feed is temporarily unavailable.',
+          items: [],
+          generatedAt: ''
+        });
+      }
+    };
+
+    loadCyberWatch();
+
+    return () => {
+      isMounted = false;
+      abortController.abort();
+    };
+  }, []);
+
   const currentPhrase = HERO_TYPEWRITER_TITLES[typingState.phraseIndex];
   const typedSubtitle = typingState.reducedMotion
     ? HERO_TYPEWRITER_TITLES[0]
@@ -340,6 +412,7 @@ function App() {
           <a href="#journey" onClick={() => setMobileMenuOpen(false)}>Journey</a>
           <a href="#skills" onClick={() => setMobileMenuOpen(false)}>Skills</a>
           <a href="#projects" onClick={() => setMobileMenuOpen(false)}>Projects</a>
+          <a href="#cyber-watch" onClick={() => setMobileMenuOpen(false)}>Cyber Watch</a>
           <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
         </nav>
       </header>
@@ -456,6 +529,49 @@ function App() {
                     Repository
                   </a>
                 </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="cyber-watch" className="panel section">
+          <h2>Cybersecurity <span>Watch</span></h2>
+          <p className="cyber-watch-intro">
+            Live aggregation of official vulnerability feeds to track exploited CVEs and emerging security risk.
+          </p>
+          <p className="cyber-watch-meta">
+            {cyberWatch.loading
+              ? 'Fetching latest advisories...'
+              : cyberWatch.generatedAt
+                ? `Updated ${new Date(cyberWatch.generatedAt).toLocaleString('en-AU')}`
+                : 'Feed update timestamp unavailable'}
+          </p>
+          {cyberWatch.error ? (
+            <p className="cyber-watch-error">{cyberWatch.error}</p>
+          ) : null}
+          {!cyberWatch.loading && cyberWatch.items.length === 0 ? (
+            <p className="cyber-watch-empty">No advisories available right now.</p>
+          ) : null}
+          <div className="cyber-watch-grid">
+            {cyberWatch.items.map((item) => (
+              <article className="cyber-watch-card" key={`${item.id}-${item.source}`}>
+                <header className="cyber-watch-card-head">
+                  <h3>{item.id}</h3>
+                  <span className={`severity-pill ${severityClassName(item.severity)}`}>
+                    {item.severity || 'Info'}
+                  </span>
+                </header>
+                <p className="cyber-watch-title">{item.title}</p>
+                <p className="cyber-watch-summary">{item.summary}</p>
+                <footer className="cyber-watch-foot">
+                  <span className="source-pill">{item.source || 'Feed'}</span>
+                  <span>
+                    {item.publishedAt
+                      ? new Date(item.publishedAt).toLocaleDateString('en-CA')
+                      : 'Unknown date'}
+                  </span>
+                  <a href={item.url} target="_blank" rel="noreferrer">Details</a>
+                </footer>
               </article>
             ))}
           </div>
