@@ -2,13 +2,25 @@ import { useEffect, useRef } from 'react';
 
 const journeyItems = [
   {
-    company: 'Freelance Missions',
-    period: '2023 - Present',
-    place: 'Brisbane / Remote',
+    company: 'James Cook University',
+    role: 'Senior Software Engineer',
+    period: '2.5 years',
+    place: 'Townsville, Australia',
     bullets: [
-      'Built and delivered full-stack web products for clients from concept to production.',
-      'Led architecture decisions to reduce delivery risk and speed up launch cycles.',
-      'Improved business outcomes by focusing on UX conversion and performance budgets.'
+      'Designed and maintained production software used in an academic and operational context.',
+      'Delivered backend and integration features with an emphasis on reliability and maintainability.',
+      'Collaborated with stakeholders to turn complex requirements into clear technical deliverables.'
+    ]
+  },
+  {
+    company: 'UI Enlyte',
+    role: 'Blockchain / Full-Stack Developer',
+    period: '2 years',
+    place: 'Frankfurt am Main, Germany',
+    bullets: [
+      'Developed full-stack product features across frontend, backend, and blockchain integrations.',
+      'Built smart-contract and web application workflows focused on production readiness.',
+      'Contributed to product delivery speed with clean architecture and clear implementation standards.'
     ]
   }
 ];
@@ -16,15 +28,15 @@ const journeyItems = [
 const skillGroups = [
   {
     title: 'Languages & Frameworks',
-    items: ['JavaScript', 'TypeScript', 'Python', 'Go', 'React', 'Next.js', 'Node.js', 'FastAPI']
+    items: ['JavaScript', 'TypeScript', 'Python', 'Golang', 'ReactJS', 'VueJS', 'Flutter', 'GraphQL', 'Solidity', 'Truffle']
   },
   {
-    title: 'UI & Product Delivery',
-    items: ['Design Systems', 'Accessibility', 'Animation Design', 'UX Writing', 'Performance', 'SEO']
+    title: 'Data & Messaging',
+    items: ['MariaDB', 'PostgreSQL', 'MongoDB', 'RabbitMQ']
   },
   {
-    title: 'DevOps & Cloud',
-    items: ['Docker', 'CI/CD', 'Nginx', 'Linux', 'GitHub Actions', 'Netlify', 'Render', 'Observability']
+    title: 'Automation, Security & Ops',
+    items: ['n8n', 'Jenkins', 'Prometheus', 'Nessus', 'EPrint']
   }
 ];
 
@@ -178,13 +190,13 @@ function App() {
 
       <main>
         <section id="home" className="hero panel">
-          <p className="eyebrow">Freelance Software Engineer</p>
+          <p className="eyebrow">Senior Software Engineer</p>
           <h1>
             Hi, I am <span>Pierre Daguier</span>
           </h1>
-          <p className="hero-subtitle">I craft growth-focused web products with clean execution and senior-level reliability.</p>
+          <p className="hero-subtitle">Backend, automation, and full-stack delivery for teams that need fast execution and reliable systems.</p>
           <p className="hero-text">
-            Transforming complex requirements into elegant, fast, and future-proof digital platforms.
+            4+ years across enterprise software engineering, blockchain products, and production-grade platform delivery.
           </p>
           <div className="hero-actions">
             <a className="btn btn-solid" href="#contact">Get in touch</a>
@@ -192,16 +204,16 @@ function App() {
           </div>
           <div className="stats">
             <div>
-              <strong>20+</strong>
-              <span>Projects Delivered</span>
+              <strong>4+</strong>
+              <span>Years Experience</span>
             </div>
             <div>
-              <strong>3+</strong>
-              <span>Years Building</span>
+              <strong>2</strong>
+              <span>Long-Term Roles</span>
             </div>
             <div>
-              <strong>100%</strong>
-              <span>Client Focus</span>
+              <strong>4</strong>
+              <span>Flagship Projects</span>
             </div>
           </div>
         </section>
@@ -212,6 +224,7 @@ function App() {
             <article className="timeline-card" key={item.company}>
               <div className="timeline-head">
                 <h3>{item.company}</h3>
+                <p className="timeline-role">{item.role}</p>
                 <div className="meta-row">
                   <span>{item.period}</span>
                   <span>{item.place}</span>

@@ -265,6 +265,12 @@ h2 span {
   font-size: 1.8rem;
 }
 
+.timeline-role {
+  margin-top: 0.3rem;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
 .meta-row {
   margin-top: 0.6rem;
   display: flex;
