@@ -175,7 +175,7 @@ const caseStudies = [
     tech: ['Go', 'React', 'Vite', 'Prometheus', 'Grafana', 'Tempo', 'Loki', 'Docker'],
     links: [
       { label: 'Repository', url: 'https://github.com/PierreDaguier/go-service-template-pro' },
-      { label: 'Freelance Pitch', url: 'https://github.com/PierreDaguier/go-service-template-pro/blob/main/docs/pitch-freelance.md' },
+      { label: 'Solution Brief', url: 'https://github.com/PierreDaguier/go-service-template-pro/blob/main/docs/pitch-freelance.md' },
       { label: 'Demo Script', url: 'https://github.com/PierreDaguier/go-service-template-pro/blob/main/docs/demo-script.md' }
     ]
   },
@@ -523,7 +523,7 @@ function App() {
 
       <main>
         <section id="home" className="hero panel reveal" data-reveal>
-          <p className="eyebrow">Senior Software Engineer · Freelance</p>
+          <p className="eyebrow">Senior Software Engineer</p>
           <h1>
             Hi, I am <span>Pierre Daguier</span>
           </h1>
@@ -563,7 +563,7 @@ function App() {
         <section className="panel trust-strip reveal" data-reveal>
           <div className="trust-strip-head">
             <p className="eyebrow">Credibility Signals</p>
-            <span className="availability-pill">Open to freelance projects · Typical reply &lt; 24h</span>
+            <span className="availability-pill">Open to collaboration · Typical reply &lt; 24h</span>
           </div>
           <div className="trust-grid">
             <article className="trust-card">
