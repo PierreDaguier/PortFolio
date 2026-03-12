@@ -260,6 +260,7 @@ function App() {
     reducedMotion: false
   });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cyberRefreshKey, setCyberRefreshKey] = useState(0);
   const [cyberWatch, setCyberWatch] = useState({
     loading: true,
     error: '',
@@ -341,9 +342,20 @@ function App() {
     const abortController = new AbortController();
 
     const loadCyberWatch = async () => {
+      setCyberWatch((previous) => ({
+        ...previous,
+        loading: true,
+        error: ''
+      }));
+
       try {
-        const response = await fetch(CYBER_WATCH_ENDPOINT, {
-          signal: abortController.signal
+        const endpoint = cyberRefreshKey
+          ? `${CYBER_WATCH_ENDPOINT}?refresh=${cyberRefreshKey}`
+          : CYBER_WATCH_ENDPOINT;
+
+        const response = await fetch(endpoint, {
+          signal: abortController.signal,
+          cache: 'no-store'
         });
 
         if (!response.ok) {
@@ -384,12 +396,14 @@ function App() {
       isMounted = false;
       abortController.abort();
     };
-  }, []);
+  }, [cyberRefreshKey]);
 
   const currentPhrase = HERO_TYPEWRITER_TITLES[typingState.phraseIndex];
   const typedSubtitle = typingState.reducedMotion
     ? HERO_TYPEWRITER_TITLES[0]
     : currentPhrase.slice(0, typingState.charCount);
+  const hasArticleItems = cyberWatch.articles.length > 0;
+  const hasVulnerabilityItems = cyberWatch.vulnerabilities.length > 0;
 
   return (
     <div className="site">
@@ -542,18 +556,28 @@ function App() {
           <p className="cyber-watch-intro">
             Live snapshot with 3 recent cybersecurity media articles and 3 current vulnerability advisories.
           </p>
-          <p className="cyber-watch-meta">
-            {cyberWatch.loading
-              ? 'Fetching latest advisories...'
-              : cyberWatch.generatedAt
-                ? `Updated ${new Date(cyberWatch.generatedAt).toLocaleString('en-AU')}`
-                : 'Feed update timestamp unavailable'}
-          </p>
+          <div className="cyber-watch-meta-row">
+            <p className="cyber-watch-meta">
+              {cyberWatch.loading
+                ? 'Fetching latest advisories...'
+                : cyberWatch.generatedAt
+                  ? `Updated ${new Date(cyberWatch.generatedAt).toLocaleString('en-AU')}`
+                  : 'Feed update timestamp unavailable'}
+            </p>
+            <button
+              type="button"
+              className="cyber-watch-refresh"
+              onClick={() => setCyberRefreshKey(Date.now())}
+              disabled={cyberWatch.loading}
+            >
+              {cyberWatch.loading ? 'Refreshing...' : 'Refresh feed'}
+            </button>
+          </div>
           {cyberWatch.error ? (
             <p className="cyber-watch-error">{cyberWatch.error}</p>
           ) : null}
-          {!cyberWatch.loading && cyberWatch.articles.length === 0 && cyberWatch.vulnerabilities.length === 0 ? (
-            <p className="cyber-watch-empty">No advisories available right now.</p>
+          {!cyberWatch.loading && !cyberWatch.error && !hasArticleItems && !hasVulnerabilityItems ? (
+            <p className="cyber-watch-empty">Feeds are reachable but returned no items in this refresh.</p>
           ) : null}
           <div className="cyber-watch-split">
             <div>
@@ -576,6 +600,22 @@ function App() {
                     </footer>
                   </article>
                 ))}
+                {!cyberWatch.loading && !hasArticleItems ? (
+                  <article className="cyber-watch-card cyber-watch-card-empty">
+                    <header className="cyber-watch-card-head">
+                      <h3>No live articles this refresh</h3>
+                      <span className="source-pill">Fallback</span>
+                    </header>
+                    <p className="cyber-watch-summary">
+                      Media feeds can occasionally be rate-limited. Use the refresh button or check trusted sources directly.
+                    </p>
+                    <footer className="cyber-watch-foot">
+                      <a href="https://thehackernews.com/" target="_blank" rel="noreferrer">The Hacker News</a>
+                      <a href="https://www.bleepingcomputer.com/" target="_blank" rel="noreferrer">BleepingComputer</a>
+                      <a href="https://krebsonsecurity.com/" target="_blank" rel="noreferrer">Krebs on Security</a>
+                    </footer>
+                  </article>
+                ) : null}
               </div>
             </div>
 
@@ -603,6 +643,21 @@ function App() {
                     </footer>
                   </article>
                 ))}
+                {!cyberWatch.loading && !hasVulnerabilityItems ? (
+                  <article className="cyber-watch-card cyber-watch-card-empty">
+                    <header className="cyber-watch-card-head">
+                      <h3>No live vulnerabilities this refresh</h3>
+                      <span className="severity-pill severity-info">Fallback</span>
+                    </header>
+                    <p className="cyber-watch-summary">
+                      Advisory APIs can temporarily throttle requests. Refresh, or open official vulnerability catalogs below.
+                    </p>
+                    <footer className="cyber-watch-foot">
+                      <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noreferrer">CISA KEV</a>
+                      <a href="https://nvd.nist.gov/vuln/search" target="_blank" rel="noreferrer">NVD Search</a>
+                    </footer>
+                  </article>
+                ) : null}
               </div>
             </div>
           </div>

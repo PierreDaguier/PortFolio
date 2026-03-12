@@ -543,6 +543,37 @@ h2 span {
   color: #9fdab7;
 }
 
+.cyber-watch-meta-row {
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.cyber-watch-refresh {
+  border: 1px solid rgba(72, 255, 130, 0.45);
+  border-radius: 999px;
+  background: rgba(72, 255, 130, 0.08);
+  color: var(--green);
+  padding: 0.34rem 0.72rem;
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.cyber-watch-refresh:hover:not(:disabled) {
+  border-color: rgba(72, 255, 130, 0.7);
+  transform: translateY(-1px);
+}
+
+.cyber-watch-refresh:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 .cyber-watch-error,
 .cyber-watch-empty {
   margin: 0.7rem auto 0;
@@ -577,6 +608,11 @@ h2 span {
   padding: 0.95rem;
   display: grid;
   gap: 0.55rem;
+}
+
+.cyber-watch-card-empty {
+  border-style: dashed;
+  background: rgba(3, 17, 11, 0.52);
 }
 
 .cyber-watch-card-head {

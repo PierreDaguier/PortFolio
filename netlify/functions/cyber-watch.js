@@ -252,8 +252,8 @@ export async function handler() {
   try {
     const [articles, kevResult, nvdResult] = await Promise.all([
       getRecentArticles(),
-      fetchWithTimeout(CISA_KEV_URL, 'json'),
-      fetchWithTimeout(NVD_RECENT_URL, 'json')
+      fetchWithTimeout(CISA_KEV_URL, 'json').catch(() => null),
+      fetchWithTimeout(NVD_RECENT_URL, 'json').catch(() => null)
     ]);
 
     const kevItems = mapKevItems(kevResult);
@@ -264,14 +264,16 @@ export async function handler() {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
-        'Cache-Control': 'public, max-age=0, s-maxage=1800, stale-while-revalidate=21600'
+        'Cache-Control': 'public, max-age=0, s-maxage=300, stale-while-revalidate=900'
       },
       body: JSON.stringify({
         generatedAt: new Date().toISOString(),
         sourceHealth: {
           articleCount: articles.length,
           cisaKevCount: kevItems.length,
-          nvdCount: nvdItems.length
+          nvdCount: nvdItems.length,
+          cisaKevAvailable: Boolean(kevResult),
+          nvdAvailable: Boolean(nvdResult)
         },
         articles,
         vulnerabilities
