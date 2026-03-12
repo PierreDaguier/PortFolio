@@ -121,42 +121,97 @@ const severityClassName = (severity) => {
   return 'severity-info';
 };
 
-const projects = [
+const DISCOVERY_CALL_URL = 'mailto:pierredaguier@gmail.com?subject=Discovery%20Call%20Request';
+
+const serviceOfferings = [
+  {
+    title: 'Backend & API Integrations',
+    problem: 'Your product has data silos, fragile endpoints, and delivery pressure.',
+    outcome: 'Production-grade APIs, resilient integration flows, and maintainable service contracts.',
+    timeframe: 'Typical delivery: 1-3 weeks for scoped milestones.'
+  },
+  {
+    title: 'Automation Workflows (n8n + AI Agents)',
+    problem: 'High-value operations are still manual, slow, and error-prone.',
+    outcome: 'Automated workflows with human approvals, audit logs, and reliable execution paths.',
+    timeframe: 'Typical delivery: 1-2 weeks for first operational workflow.'
+  },
+  {
+    title: 'Observability & Reliability',
+    problem: 'Incidents take too long to triage and impact is hard to explain.',
+    outcome: 'Metrics, logs, traces, and alert narratives that speed up decision-making.',
+    timeframe: 'Typical delivery: 1-2 weeks for actionable visibility baseline.'
+  }
+];
+
+const caseStudies = [
   {
     title: 'Event-Driven Automation Platform',
     label: 'Automation',
-    summary:
-      'Client-facing B2B workflow automation demo with secure webhook ingestion, rule engine, retries with DLQ, and observability-ready operations dashboard.',
+    context: 'Needed secure webhook ingestion and asynchronous processing for bursty B2B workflows.',
+    delivered: 'Built signed webhooks, idempotent event handling, queue workers, retry/backoff, and DLQ safeguards.',
+    impact: [
+      'Demonstrated resilient processing paths with explicit failure recovery.',
+      'Operational run states become traceable instead of opaque background jobs.',
+      'Demo flow reduces manual reprocessing steps from multi-step triage to one replay path.'
+    ],
     tech: ['Next.js', 'TypeScript', 'Go', 'PostgreSQL', 'Redis', 'RabbitMQ', 'OpenTelemetry'],
-    demoUrl: null,
-    repoUrl: 'https://github.com/PierreDaguier/event-driven-automation-platform'
+    links: [
+      { label: 'Repository', url: 'https://github.com/PierreDaguier/event-driven-automation-platform' },
+      { label: 'Architecture', url: 'https://github.com/PierreDaguier/event-driven-automation-platform/blob/main/docs/ARCHITECTURE.md' },
+      { label: 'Demo Script', url: 'https://github.com/PierreDaguier/event-driven-automation-platform/blob/main/docs/DEMO.md' }
+    ]
   },
   {
     title: 'Production-Ready Go Service Template',
     label: 'Backend',
-    summary:
-      'Go microservice template built with clean architecture, auth, rate limiting, observability, and an operations control panel for stakeholder visibility.',
+    context: 'Teams needed a reusable Go service base without compromising security or operability.',
+    delivered: 'Implemented clean architecture, auth, rate limiting, telemetry, and an operations control panel.',
+    impact: [
+      'Accelerates project bootstrap from scratch to deployable baseline in one setup cycle.',
+      'Provides consistent guardrails for API quality, reliability, and observability.',
+      'Gives non-technical stakeholders a visual operations layer for faster status alignment.'
+    ],
     tech: ['Go', 'React', 'Vite', 'Prometheus', 'Grafana', 'Tempo', 'Loki', 'Docker'],
-    demoUrl: null,
-    repoUrl: 'https://github.com/PierreDaguier/go-service-template-pro'
+    links: [
+      { label: 'Repository', url: 'https://github.com/PierreDaguier/go-service-template-pro' },
+      { label: 'Freelance Pitch', url: 'https://github.com/PierreDaguier/go-service-template-pro/blob/main/docs/pitch-freelance.md' },
+      { label: 'Demo Script', url: 'https://github.com/PierreDaguier/go-service-template-pro/blob/main/docs/demo-script.md' }
+    ]
   },
   {
     title: 'Observability Command Center Demo',
     label: 'Observability',
-    summary:
-      'Premium command center for logs-metrics-traces correlation, incident timeline, and replay scenarios, designed for fast non-technical stakeholder understanding.',
+    context: 'Incident communication needed to work for both engineers and non-technical decision-makers.',
+    delivered: 'Shipped correlation views for logs/metrics/traces, alert context, and replayable incident narratives.',
+    impact: [
+      'Turns telemetry noise into a clear incident storyline in minutes.',
+      'Improves handoff quality between technical teams and business stakeholders.',
+      'Demonstrates repeatable post-incident walkthroughs using curated scenarios.'
+    ],
     tech: ['React', 'TypeScript', 'Fastify', 'OpenTelemetry', 'Prometheus', 'Grafana', 'Loki', 'Tempo'],
-    demoUrl: null,
-    repoUrl: 'https://github.com/PierreDaguier/observability-command-center-demo'
+    links: [
+      { label: 'Repository', url: 'https://github.com/PierreDaguier/observability-command-center-demo' },
+      { label: 'Architecture', url: 'https://github.com/PierreDaguier/observability-command-center-demo/blob/main/docs/architecture/command-center-architecture.svg' },
+      { label: 'Client Walkthrough', url: 'https://github.com/PierreDaguier/observability-command-center-demo/blob/main/docs/demo/client-walkthrough-7min.md' }
+    ]
   },
   {
     title: 'AI Automation Command Center',
     label: 'AI Agents',
-    summary:
-      'Enterprise-focused automation platform combining n8n orchestration, AI agent execution, human-in-the-loop approvals, and audit-ready operation tracking.',
+    context: 'Automation needed governance: human approvals, traceability, and compliance-friendly records.',
+    delivered: 'Orchestrated n8n workflows, AI-agent tasks, approval checkpoints, and audit-oriented event tracking.',
+    impact: [
+      'Creates auditable workflow histories instead of black-box agent actions.',
+      'Adds explicit human-in-the-loop controls before high-impact operations.',
+      'Demonstrates integration-ready architecture for enterprise automation rollouts.'
+    ],
     tech: ['n8n', 'Next.js', 'TypeScript', 'Python', 'PostgreSQL', 'Redis', 'OpenTelemetry', 'Docker'],
-    demoUrl: null,
-    repoUrl: 'https://github.com/PierreDaguier/ai-automation-command-center'
+    links: [
+      { label: 'Repository', url: 'https://github.com/PierreDaguier/ai-automation-command-center' },
+      { label: 'Walkthrough', url: 'https://github.com/PierreDaguier/ai-automation-command-center/blob/main/docs/walkthrough-7-minutes.md' },
+      { label: 'Screenshots', url: 'https://github.com/PierreDaguier/ai-automation-command-center/tree/main/docs/media' }
+    ]
   }
 ];
 
@@ -338,6 +393,37 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) {
+      return undefined;
+    }
+
+    const revealNodes = document.querySelectorAll('[data-reveal]');
+    if (revealNodes.length === 0) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: '0px 0px -8% 0px'
+      }
+    );
+
+    revealNodes.forEach((node) => observer.observe(node));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     let isMounted = true;
     const abortController = new AbortController();
 
@@ -426,17 +512,18 @@ function App() {
         </button>
         <nav id="primary-nav" className={`nav-links ${mobileMenuOpen ? 'nav-open' : ''}`}>
           <a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a>
+          <a href="#services" onClick={() => setMobileMenuOpen(false)}>Services</a>
+          <a href="#case-studies" onClick={() => setMobileMenuOpen(false)}>Case Studies</a>
           <a href="#journey" onClick={() => setMobileMenuOpen(false)}>Journey</a>
           <a href="#skills" onClick={() => setMobileMenuOpen(false)}>Skills</a>
-          <a href="#projects" onClick={() => setMobileMenuOpen(false)}>Projects</a>
           <a href="#cyber-watch" onClick={() => setMobileMenuOpen(false)}>Cyber Watch</a>
           <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
         </nav>
       </header>
 
       <main>
-        <section id="home" className="hero panel">
-          <p className="eyebrow">Senior Software Engineer</p>
+        <section id="home" className="hero panel reveal" data-reveal>
+          <p className="eyebrow">Senior Software Engineer · Freelance</p>
           <h1>
             Hi, I am <span>Pierre Daguier</span>
           </h1>
@@ -450,32 +537,81 @@ function App() {
             </span>
           </p>
           <p className="hero-text">
-            4+ years across enterprise software engineering, automation workflows, and production-grade platform delivery.
+            Backend delivery, automation workflows, and reliability engineering for teams that need fast execution and
+            dependable systems.
           </p>
           <div className="hero-actions">
-            <a className="btn btn-solid" href="#contact">Get in touch</a>
-            <a className="btn btn-outline" href="#projects">See projects</a>
+            <a className="btn btn-solid" href={DISCOVERY_CALL_URL}>Book a discovery call</a>
+            <a className="btn btn-outline" href="#case-studies">View case studies</a>
           </div>
           <div className="stats">
             <div>
               <strong>4+</strong>
-              <span>Years Experience</span>
+              <span>Years in Production</span>
             </div>
             <div>
-              <strong>2</strong>
-              <span>Long-Term Roles</span>
+              <strong>Research/Product</strong>
+              <span>Real-world delivery environments</span>
             </div>
             <div>
-              <strong>4</strong>
-              <span>Flagship Projects</span>
+              <strong>AU + DE</strong>
+              <span>Cross-region professional experience</span>
             </div>
           </div>
         </section>
 
-        <section id="journey" className="panel section">
+        <section className="panel trust-strip reveal" data-reveal>
+          <div className="trust-strip-head">
+            <p className="eyebrow">Credibility Signals</p>
+            <span className="availability-pill">Open to freelance projects · Typical reply &lt; 24h</span>
+          </div>
+          <div className="trust-grid">
+            <article className="trust-card">
+              <h3>Production Research Systems</h3>
+              <p>
+                James Cook University Research Team: software supporting research and thesis-oriented workflows
+                with reliable data operations.
+              </p>
+            </article>
+            <article className="trust-card">
+              <h3>Product Delivery in Industry</h3>
+              <p>
+                UI Enlyte in Frankfurt: full-stack and blockchain-integrated product delivery under business timelines.
+              </p>
+            </article>
+            <article className="trust-card">
+              <h3>Proof-Backed Portfolio</h3>
+              <p>
+                Public repositories include architecture docs, demo scripts, workflow traces, and deployment-ready setups.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="services" className="panel section reveal" data-reveal>
+          <h2>Services <span>I Deliver</span></h2>
+          <p className="skills-intro">Clear scope, fast milestones, and outcomes aligned with real product constraints.</p>
+          <div className="service-grid">
+            {serviceOfferings.map((service, index) => (
+              <article
+                className="service-card reveal"
+                data-reveal
+                style={{ '--reveal-delay': `${index * 90}ms` }}
+                key={service.title}
+              >
+                <h3>{service.title}</h3>
+                <p><strong>Problem:</strong> {service.problem}</p>
+                <p><strong>Outcome:</strong> {service.outcome}</p>
+                <p className="service-time">{service.timeframe}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="journey" className="panel section reveal" data-reveal>
           <h2>My <span>Journey</span></h2>
           {journeyItems.map((item) => (
-            <article className="timeline-card" key={item.company}>
+            <article className="timeline-card reveal" data-reveal key={item.company}>
               <div className="timeline-head">
                 <h3>{item.company}</h3>
                 <p className="timeline-role">{item.role}</p>
@@ -493,12 +629,12 @@ function App() {
           ))}
         </section>
 
-        <section id="skills" className="panel section">
+        <section id="skills" className="panel section reveal" data-reveal>
           <h2>My <span>Skillset</span></h2>
           <p className="skills-intro">Core technologies used in production delivery, architecture, and operations.</p>
           <div className="logo-marquee" aria-label="Technology logos marquee">
             {logoRows.map((row) => (
-              <div className="logo-row-group" key={row.title}>
+              <div className="logo-row-group reveal" data-reveal key={row.title}>
                 <p className="logo-row-label">{row.title}</p>
                 <div className="logo-row-mask">
                   <div className={`logo-row-track ${row.reverse ? 'logo-row-track-reverse' : ''}`}>
@@ -523,35 +659,44 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="panel section">
-          <h2>Featured <span>Projects</span></h2>
+        <section id="case-studies" className="panel section reveal" data-reveal>
+          <h2>Case <span>Studies</span></h2>
+          <p className="skills-intro">Each project is presented as a client-style delivery case: context, solution, measurable impact.</p>
           <div className="project-grid">
-            {projects.map((project) => (
-              <article className="project-card" key={project.title}>
+            {caseStudies.map((project, index) => (
+              <article
+                className="project-card reveal"
+                data-reveal
+                style={{ '--reveal-delay': `${index * 90}ms` }}
+                key={project.title}
+              >
                 <header>
                   <h3>{project.title}</h3>
                   <span className="pill">{project.label}</span>
                 </header>
-                <p>{project.summary}</p>
+                <p className="case-context"><strong>Context:</strong> {project.context}</p>
+                <p className="case-delivered"><strong>Delivered:</strong> {project.delivered}</p>
+                <ul className="case-impact">
+                  {project.impact.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
                 <div className="chip-wrap">
                   {project.tech.map((item) => (
                     <span key={item} className="chip">{item}</span>
                   ))}
                 </div>
-                <div className="project-actions">
-                  {project.demoUrl ? (
-                    <a href={project.demoUrl} target="_blank" rel="noreferrer" className="btn btn-solid">Live demo</a>
-                  ) : null}
-                  <a href={project.repoUrl} target="_blank" rel="noreferrer" className={project.demoUrl ? 'btn btn-outline' : 'btn btn-solid'}>
-                    Repository
-                  </a>
+                <div className="proof-links">
+                  {project.links.map((link) => (
+                    <a key={link.url} href={link.url} target="_blank" rel="noreferrer">{link.label}</a>
+                  ))}
                 </div>
               </article>
             ))}
           </div>
         </section>
 
-        <section id="cyber-watch" className="panel section">
+        <section id="cyber-watch" className="panel section reveal" data-reveal>
           <h2>Cybersecurity <span>Watch</span></h2>
           <p className="cyber-watch-intro">
             Live snapshot with 3 recent cybersecurity media articles and 3 current vulnerability advisories.
@@ -663,8 +808,13 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="panel section">
+        <section id="contact" className="panel section reveal" data-reveal>
           <h2>Get <span>In Touch</span></h2>
+          <p className="skills-intro">Share your scope, constraints, and target timeline. I usually reply within 24 hours.</p>
+          <div className="contact-quick-actions">
+            <a className="btn btn-solid" href={DISCOVERY_CALL_URL}>Book a 20-min discovery call</a>
+            <a className="btn btn-outline" href="#case-studies">Review case studies first</a>
+          </div>
           <div className="contact-grid">
             <form className="contact-form" action="https://formspree.io/f/mjvdlkbw" method="POST">
               <label htmlFor="name">Name</label>
@@ -673,16 +823,28 @@ function App() {
               <label htmlFor="email">Email</label>
               <input id="email" type="email" name="email" placeholder="your.email@example.com" required />
 
-              <label htmlFor="subject">Subject</label>
-              <input id="subject" name="subject" placeholder="Project scope" />
+              <label htmlFor="projectType">Project Type</label>
+              <select id="projectType" name="projectType" defaultValue="API Integration">
+                <option>API Integration</option>
+                <option>Automation Workflow</option>
+                <option>Observability / Reliability</option>
+                <option>Other</option>
+              </select>
 
-              <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows="6" placeholder="What are you building?" required />
+              <label htmlFor="message">Project Brief</label>
+              <textarea id="message" name="message" rows="5" placeholder="What do you need delivered, and by when?" required />
 
-              <button type="submit" className="btn btn-solid">Send message</button>
+              <button type="submit" className="btn btn-solid">Send project brief</button>
             </form>
 
             <aside className="contact-links-panel">
+              <a href={DISCOVERY_CALL_URL}>
+                <div className="contact-link-head">
+                  <span className="contact-icon contact-icon-text" aria-hidden="true">~$</span>
+                  <h3>Discovery Call</h3>
+                </div>
+                <p>20 minutes to scope delivery, constraints, and next steps.</p>
+              </a>
               <a href="mailto:pierredaguier@gmail.com">
                 <div className="contact-link-head">
                   <span className="contact-icon" aria-hidden="true">
@@ -738,6 +900,10 @@ function App() {
           </div>
         </section>
       </main>
+      <div className="mobile-cta">
+        <a href={DISCOVERY_CALL_URL}>Book a call</a>
+        <a href="#case-studies">See case studies</a>
+      </div>
       <footer className="site-footer panel">
         <div className="site-footer-inner">
           <p className="footer-main">Pierre Daguier · Senior Software Engineer</p>
