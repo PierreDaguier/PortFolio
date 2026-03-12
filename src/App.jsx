@@ -3,13 +3,13 @@ import { useEffect, useRef } from 'react';
 const journeyItems = [
   {
     company: 'James Cook University',
-    role: 'Senior Software Engineer',
+    role: 'Senior Software Engineer · Research Team',
     period: '2.5 years',
     place: 'Townsville, Australia',
     bullets: [
-      'Designed and maintained production software used in an academic and operational context.',
-      'Delivered backend and integration features with an emphasis on reliability and maintainability.',
-      'Collaborated with stakeholders to turn complex requirements into clear technical deliverables.'
+      'Built and maintained research-facing systems supporting thesis and publication workflows.',
+      'Delivered EPrint and SQL-backed capabilities for reliable academic data management and retrieval.',
+      'Collaborated with researchers and stakeholders to translate complex research requirements into robust software.'
     ]
   },
   {
@@ -31,14 +31,46 @@ const skillGroups = [
     items: ['JavaScript', 'TypeScript', 'Python', 'Golang', 'ReactJS', 'VueJS', 'Flutter', 'GraphQL', 'Solidity', 'Truffle']
   },
   {
-    title: 'Data & Messaging',
-    items: ['MariaDB', 'PostgreSQL', 'MongoDB', 'RabbitMQ']
+    title: 'Backend, Data & APIs',
+    items: ['MariaDB', 'PostgreSQL', 'MongoDB', 'RabbitMQ', 'REST APIs', 'OpenAPI', 'Microservices']
   },
   {
-    title: 'Automation, Security & Ops',
-    items: ['n8n', 'Jenkins', 'Prometheus', 'Nessus', 'EPrint']
+    title: 'Automation, DevOps & Reliability',
+    items: ['Docker', 'CI/CD', 'Jenkins', 'n8n', 'Prometheus', 'Grafana', 'Linux', 'Apache', 'Nginx', 'Nessus', 'EPrint']
   }
 ];
+
+const logoRows = [
+  [
+    { name: 'JavaScript', slug: 'javascript', color: 'F7DF1E' },
+    { name: 'TypeScript', slug: 'typescript', color: '3178C6' },
+    { name: 'Python', slug: 'python', color: '3776AB' },
+    { name: 'Golang', slug: 'go', color: '00ADD8' },
+    { name: 'ReactJS', slug: 'react', color: '61DAFB' },
+    { name: 'VueJS', slug: 'vuedotjs', color: '4FC08D' },
+    { name: 'Flutter', slug: 'flutter', color: '02569B' },
+    { name: 'GraphQL', slug: 'graphql', color: 'E10098' },
+    { name: 'Solidity', slug: 'solidity', color: 'FFFFFF' },
+    { name: 'Truffle', slug: 'truffle', color: '5E464D' }
+  ],
+  [
+    { name: 'MariaDB', slug: 'mariadb', color: '003545' },
+    { name: 'PostgreSQL', slug: 'postgresql', color: '4169E1' },
+    { name: 'MongoDB', slug: 'mongodb', color: '47A248' },
+    { name: 'RabbitMQ', slug: 'rabbitmq', color: 'FF6600' },
+    { name: 'Docker', slug: 'docker', color: '2496ED' },
+    { name: 'Jenkins', slug: 'jenkins', color: 'D24939' },
+    { name: 'n8n', slug: 'n8n', color: 'EA4B71' },
+    { name: 'OpenAPI', slug: 'openapiinitiative', color: '6BA539' },
+    { name: 'Prometheus', slug: 'prometheus', color: 'E6522C' },
+    { name: 'Grafana', slug: 'grafana', color: 'F46800' },
+    { name: 'Linux', slug: 'linux', color: 'FCC624' },
+    { name: 'Apache', slug: 'apache', color: 'D22128' },
+    { name: 'Nginx', slug: 'nginx', color: '009639' }
+  ]
+];
+
+const logoUrl = (slug, color) => `https://cdn.simpleicons.org/${slug}/${color}`;
 
 const projects = [
   {
@@ -251,6 +283,20 @@ function App() {
                   ))}
                 </div>
               </article>
+            ))}
+          </div>
+          <div className="logo-marquee" aria-label="Technology logos marquee">
+            {logoRows.map((row, rowIndex) => (
+              <div className="logo-row-mask" key={`logo-row-${rowIndex}`}>
+                <div className={`logo-row-track ${rowIndex === 1 ? 'logo-row-track-reverse' : ''}`}>
+                  {[...row, ...row].map((logo, index) => (
+                    <span className="logo-badge" key={`${logo.slug}-${index}`}>
+                      <img src={logoUrl(logo.slug, logo.color)} alt={`${logo.name} logo`} loading="lazy" />
+                      <span>{logo.name}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </section>
