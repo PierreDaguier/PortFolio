@@ -122,6 +122,35 @@ const severityClassName = (severity) => {
 };
 
 const DISCOVERY_CALL_URL = 'mailto:pierredaguier@gmail.com?subject=Discovery%20Call%20Request';
+const BRISBANE_TIMEZONE = 'Australia/Brisbane';
+const BRISBANE_WINDOW_START_HOUR = 8;
+const BRISBANE_WINDOW_END_HOUR = 20;
+
+const getBrisbaneClock = () => {
+  const now = new Date();
+  const hour = Number(
+    new Intl.DateTimeFormat('en-AU', {
+      timeZone: BRISBANE_TIMEZONE,
+      hour: '2-digit',
+      hour12: false
+    }).format(now)
+  );
+
+  const label = new Intl.DateTimeFormat('en-AU', {
+    timeZone: BRISBANE_TIMEZONE,
+    weekday: 'short',
+    day: '2-digit',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  }).format(now);
+
+  return {
+    label,
+    inPreferredCallWindow: hour >= BRISBANE_WINDOW_START_HOUR && hour < BRISBANE_WINDOW_END_HOUR
+  };
+};
 
 const serviceOfferings = [
   {
@@ -323,6 +352,7 @@ function App() {
     vulnerabilities: [],
     generatedAt: ''
   });
+  const [brisbaneClock, setBrisbaneClock] = useState(() => getBrisbaneClock());
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -331,6 +361,15 @@ function App() {
       reducedMotion,
       charCount: reducedMotion ? HERO_TYPEWRITER_TITLES[0].length : 0
     }));
+  }, []);
+
+  useEffect(() => {
+    setBrisbaneClock(getBrisbaneClock());
+    const intervalId = window.setInterval(() => {
+      setBrisbaneClock(getBrisbaneClock());
+    }, 60000);
+
+    return () => window.clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
@@ -811,6 +850,14 @@ function App() {
         <section id="contact" className="panel section reveal" data-reveal>
           <h2>Get <span>In Touch</span></h2>
           <p className="skills-intro">Share your scope, constraints, and target timeline. I usually reply within 24 hours.</p>
+          <p className="contact-timezone">
+            Brisbane local time: <strong>{brisbaneClock.label}</strong> (UTC+10)
+          </p>
+          <p className="contact-availability">
+            {brisbaneClock.inPreferredCallWindow
+              ? 'Currently within preferred call window (08:00-20:00 Brisbane time).'
+              : 'Currently outside preferred call window. Best call time: 08:00-20:00 Brisbane time.'}
+          </p>
           <div className="contact-quick-actions">
             <a className="btn btn-solid" href={DISCOVERY_CALL_URL}>Book a 20-min discovery call</a>
             <a className="btn btn-outline" href="#case-studies">Review case studies first</a>

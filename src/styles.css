@@ -904,6 +904,22 @@ h2 span {
   flex-wrap: wrap;
 }
 
+.contact-timezone,
+.contact-availability {
+  margin: 0.5rem auto 0;
+  text-align: center;
+  color: #bfe8d0;
+}
+
+.contact-timezone strong {
+  color: var(--green);
+}
+
+.contact-availability {
+  margin-top: 0.3rem;
+  color: var(--text-soft);
+}
+
 .contact-links-panel {
   display: grid;
   gap: 0.8rem;
