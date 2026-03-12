@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import truffleLogo from './img/truffle.png';
+import gmailIcon from './img/contact/gmail.svg';
+import linkedinIcon from './img/contact/linkedin.svg';
+import githubIcon from './img/contact/github.svg';
 
 const journeyItems = [
   {
@@ -424,7 +427,7 @@ function App() {
                 <div className="contact-link-head">
                   <span className="contact-icon" aria-hidden="true">
                     <img
-                      src="https://cdn.simpleicons.org/gmail/48ff82"
+                      src={gmailIcon}
                       alt=""
                       loading="lazy"
                       onError={(event) => {
@@ -441,7 +444,7 @@ function App() {
                 <div className="contact-link-head">
                   <span className="contact-icon" aria-hidden="true">
                     <img
-                      src="https://cdn.simpleicons.org/linkedin/48ff82"
+                      src={linkedinIcon}
                       alt=""
                       loading="lazy"
                       onError={(event) => {
@@ -458,7 +461,7 @@ function App() {
                 <div className="contact-link-head">
                   <span className="contact-icon" aria-hidden="true">
                     <img
-                      src="https://cdn.simpleicons.org/github/48ff82"
+                      src={githubIcon}
                       alt=""
                       loading="lazy"
                       onError={(event) => {
@@ -475,6 +478,18 @@ function App() {
           </div>
         </section>
       </main>
+      <footer className="site-footer panel">
+        <div className="site-footer-inner">
+          <p className="footer-main">Pierre Daguier · Senior Software Engineer</p>
+          <p className="footer-sub">Research-grade systems, automation platforms, and production-ready product delivery.</p>
+          <div className="footer-links">
+            <a href="mailto:pierredaguier@gmail.com">Gmail</a>
+            <a href="https://www.linkedin.com/in/pierre-daguier/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/PierreDaguier" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+          <p className="footer-copy">© {new Date().getFullYear()} Pierre Daguier</p>
+        </div>
+      </footer>
     </div>
   );
 }
