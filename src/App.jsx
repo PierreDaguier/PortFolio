@@ -273,7 +273,7 @@ function App() {
       <div className="vignette" aria-hidden="true" />
 
       <header className="nav-shell">
-        <a href="#home" className="logo">PD</a>
+        <a href="#home" className="logo">Pierre Daguier</a>
         <nav className="nav-links">
           <a href="#home">Home</a>
           <a href="#journey">Journey</a>
