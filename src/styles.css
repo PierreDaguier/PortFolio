@@ -162,6 +162,36 @@ h2 span {
   margin: 1.2rem 0 0;
   font-size: clamp(1.1rem, 2.5vw, 2rem);
   max-width: 26ch;
+  min-height: 2.6em;
+}
+
+.typewriter {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.18rem;
+}
+
+.typewriter-cursor {
+  color: var(--green);
+  font-weight: 700;
+  animation: typewriter-blink 1s steps(1, end) infinite;
+}
+
+.typewriter-cursor-hidden {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes typewriter-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .hero-text {

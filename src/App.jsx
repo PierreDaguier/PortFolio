@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import truffleLogo from './img/truffle.png';
 
 const journeyItems = [
@@ -70,6 +70,12 @@ const logoUrl = (slug, color) => `https://cdn.simpleicons.org/${slug}/${color}`;
 const logoSource = (logo) => logo.asset || logoUrl(logo.slug, logo.color);
 const logoId = (logo) => logo.slug || logo.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 const FALLBACK_LOGO = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9' fill='%2348ff82'/></svg>";
+const HERO_TYPEWRITER_TITLES = [
+  'Full-stack engineer',
+  'Automation engineer',
+  'Blockchain engineer',
+  'DevOps / Cybersecurity engineer'
+];
 
 const projects = [
   {
@@ -203,6 +209,64 @@ function ParticleField() {
 }
 
 function App() {
+  const [typingState, setTypingState] = useState({
+    phraseIndex: 0,
+    charCount: 0,
+    deleting: false,
+    reducedMotion: false
+  });
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTypingState((previous) => ({
+      ...previous,
+      reducedMotion,
+      charCount: reducedMotion ? HERO_TYPEWRITER_TITLES[0].length : 0
+    }));
+  }, []);
+
+  useEffect(() => {
+    if (typingState.reducedMotion) {
+      return undefined;
+    }
+
+    const currentPhrase = HERO_TYPEWRITER_TITLES[typingState.phraseIndex];
+    const isPhraseComplete = typingState.charCount >= currentPhrase.length;
+    const isPhraseEmpty = typingState.charCount <= 0;
+    let timeoutId;
+
+    if (!typingState.deleting && isPhraseComplete) {
+      timeoutId = window.setTimeout(() => {
+        setTypingState((previous) => ({ ...previous, deleting: true }));
+      }, 1500);
+    } else if (typingState.deleting && isPhraseEmpty) {
+      timeoutId = window.setTimeout(() => {
+        setTypingState((previous) => ({
+          ...previous,
+          deleting: false,
+          phraseIndex: (previous.phraseIndex + 1) % HERO_TYPEWRITER_TITLES.length
+        }));
+      }, 320);
+    } else {
+      const delta = typingState.deleting ? -1 : 1;
+      const speed = typingState.deleting ? 40 : 78;
+
+      timeoutId = window.setTimeout(() => {
+        setTypingState((previous) => ({
+          ...previous,
+          charCount: previous.charCount + delta
+        }));
+      }, speed);
+    }
+
+    return () => window.clearTimeout(timeoutId);
+  }, [typingState]);
+
+  const currentPhrase = HERO_TYPEWRITER_TITLES[typingState.phraseIndex];
+  const typedSubtitle = typingState.reducedMotion
+    ? HERO_TYPEWRITER_TITLES[0]
+    : currentPhrase.slice(0, typingState.charCount);
+
   return (
     <div className="site">
       <ParticleField />
@@ -225,7 +289,15 @@ function App() {
           <h1>
             Hi, I am <span>Pierre Daguier</span>
           </h1>
-          <p className="hero-subtitle">Backend, automation, and full-stack delivery for teams that need fast execution and reliable systems.</p>
+          <p className="hero-subtitle typewriter" aria-live="polite">
+            <span>{typedSubtitle}</span>
+            <span
+              className={`typewriter-cursor ${typingState.reducedMotion ? 'typewriter-cursor-hidden' : ''}`}
+              aria-hidden="true"
+            >
+              |
+            </span>
+          </p>
           <p className="hero-text">
             4+ years across enterprise software engineering, blockchain products, and production-grade platform delivery.
           </p>
