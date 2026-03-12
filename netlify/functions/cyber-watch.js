@@ -1,8 +1,22 @@
 const CISA_KEV_URL = 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json';
-const NVD_RECENT_URL = 'https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=24';
+const NVD_RECENT_URL = 'https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=36';
+const CYBER_MEDIA_FEEDS = [
+  {
+    source: 'The Hacker News',
+    url: 'https://feeds.feedburner.com/TheHackersNews'
+  },
+  {
+    source: 'BleepingComputer',
+    url: 'https://www.bleepingcomputer.com/feed/'
+  },
+  {
+    source: 'Krebs on Security',
+    url: 'https://krebsonsecurity.com/feed/'
+  }
+];
 const REQUEST_TIMEOUT_MS = 8000;
 
-const withTimeout = async (url) => {
+const fetchWithTimeout = async (url, responseType) => {
   const abortController = new AbortController();
   const timeout = setTimeout(() => abortController.abort(), REQUEST_TIMEOUT_MS);
 
@@ -18,6 +32,10 @@ const withTimeout = async (url) => {
       throw new Error(`HTTP ${response.status}`);
     }
 
+    if (responseType === 'text') {
+      return await response.text();
+    }
+
     return await response.json();
   } finally {
     clearTimeout(timeout);
@@ -27,6 +45,94 @@ const withTimeout = async (url) => {
 const toIsoDate = (value) => {
   const parsed = new Date(value);
   return Number.isNaN(parsed.getTime()) ? '' : parsed.toISOString();
+};
+
+const decodeHtmlEntities = (text) => {
+  if (!text) {
+    return '';
+  }
+
+  return text
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, code) => String.fromCharCode(parseInt(code, 16)))
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ');
+};
+
+const cleanText = (text) => {
+  return decodeHtmlEntities(text)
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+const pickTagValue = (block, tagName) => {
+  const regex = new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, 'i');
+  const match = block.match(regex);
+  return cleanText(match?.[1] || '');
+};
+
+const parseRssItems = (xml, source) => {
+  const itemBlocks = xml.match(/<item\b[\s\S]*?<\/item>/gi) || [];
+
+  return itemBlocks
+    .map((itemBlock, index) => {
+      const title = pickTagValue(itemBlock, 'title');
+      const link = pickTagValue(itemBlock, 'link');
+      const description = pickTagValue(itemBlock, 'description') || pickTagValue(itemBlock, 'content:encoded');
+      const publishedRaw =
+        pickTagValue(itemBlock, 'pubDate') ||
+        pickTagValue(itemBlock, 'dc:date') ||
+        pickTagValue(itemBlock, 'published');
+
+      if (!title || !link) {
+        return null;
+      }
+
+      const idBase = link || `${source}-${index}`;
+      return {
+        id: idBase,
+        title,
+        summary: description || 'No summary provided by source.',
+        source,
+        publishedAt: toIsoDate(publishedRaw),
+        url: link
+      };
+    })
+    .filter(Boolean);
+};
+
+const getRecentArticles = async () => {
+  const feedResults = await Promise.allSettled(
+    CYBER_MEDIA_FEEDS.map(async (feed) => {
+      const xml = await fetchWithTimeout(feed.url, 'text');
+      return parseRssItems(xml, feed.source).slice(0, 4);
+    })
+  );
+
+  const merged = feedResults
+    .filter((result) => result.status === 'fulfilled')
+    .flatMap((result) => result.value);
+
+  const byUrl = new Map();
+  merged.forEach((item) => {
+    if (!byUrl.has(item.url)) {
+      byUrl.set(item.url, item);
+    }
+  });
+
+  return Array.from(byUrl.values())
+    .sort((first, second) => {
+      const firstDate = first.publishedAt ? new Date(first.publishedAt).getTime() : 0;
+      const secondDate = second.publishedAt ? new Date(second.publishedAt).getTime() : 0;
+      return secondDate - firstDate;
+    })
+    .slice(0, 3);
 };
 
 const englishDescription = (cve) => {
@@ -82,7 +188,7 @@ const mapKevItems = (payload) => {
   const vulnerabilities = payload?.vulnerabilities || [];
 
   return vulnerabilities
-    .slice(0, 40)
+    .slice(0, 50)
     .map((entry) => {
       const id = entry?.cveID;
       if (!id) {
@@ -107,7 +213,7 @@ const mapKevItems = (payload) => {
     .filter(Boolean);
 };
 
-const mergeFeedItems = (kevItems, nvdItems) => {
+const mergeVulnerabilities = (kevItems, nvdItems) => {
   const byId = new Map();
 
   nvdItems.forEach((item) => {
@@ -139,19 +245,20 @@ const mergeFeedItems = (kevItems, nvdItems) => {
       const secondDate = second.publishedAt ? new Date(second.publishedAt).getTime() : 0;
       return secondDate - firstDate;
     })
-    .slice(0, 14);
+    .slice(0, 3);
 };
 
 export async function handler() {
   try {
-    const [kevPayload, nvdPayload] = await Promise.all([
-      withTimeout(CISA_KEV_URL),
-      withTimeout(NVD_RECENT_URL)
+    const [articles, kevResult, nvdResult] = await Promise.all([
+      getRecentArticles(),
+      fetchWithTimeout(CISA_KEV_URL, 'json'),
+      fetchWithTimeout(NVD_RECENT_URL, 'json')
     ]);
 
-    const kevItems = mapKevItems(kevPayload);
-    const nvdItems = mapNvdItems(nvdPayload);
-    const items = mergeFeedItems(kevItems, nvdItems);
+    const kevItems = mapKevItems(kevResult);
+    const nvdItems = mapNvdItems(nvdResult);
+    const vulnerabilities = mergeVulnerabilities(kevItems, nvdItems);
 
     return {
       statusCode: 200,
@@ -162,10 +269,12 @@ export async function handler() {
       body: JSON.stringify({
         generatedAt: new Date().toISOString(),
         sourceHealth: {
+          articleCount: articles.length,
           cisaKevCount: kevItems.length,
           nvdCount: nvdItems.length
         },
-        items
+        articles,
+        vulnerabilities
       })
     };
   } catch (error) {

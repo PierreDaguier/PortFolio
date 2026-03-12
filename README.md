@@ -20,8 +20,8 @@ Live site: https://pierredaguier.com
   https://github.com/PierreDaguier/ai-automation-command-center
 
 ## Cybersecurity Watch
-- Live CVE feed section powered by a Netlify Function (`/.netlify/functions/cyber-watch`)
-- Aggregates official sources (CISA KEV + NVD) for exploited vulnerabilities and recent advisories
+- Live section powered by a Netlify Function (`/.netlify/functions/cyber-watch`)
+- Displays 3 recent cybersecurity news articles (specialized media RSS) + 3 recent vulnerability advisories (CISA KEV + NVD)
 
 ## Local Development
 ```bash
