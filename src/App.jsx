@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import truffleLogo from './img/truffle.png';
 import nessusLogo from './img/skills/nessus.svg';
+import eprintLogo from './img/skills/eprint.svg';
 import gmailIcon from './img/contact/gmail.svg';
 import linkedinIcon from './img/contact/linkedin.svg';
 import githubIcon from './img/contact/github.svg';
@@ -65,7 +66,7 @@ const logoRows = [
       { name: 'Apache', slug: 'apache', color: 'D22128' },
       { name: 'Nginx', slug: 'nginx', color: '009639' },
       { name: 'Nessus', asset: nessusLogo },
-      { name: 'EPrint', slug: 'bookstack', color: '0288D1' }
+      { name: 'EPrint', asset: eprintLogo }
     ]
   }
 ];
