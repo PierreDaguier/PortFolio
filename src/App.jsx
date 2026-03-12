@@ -263,7 +263,8 @@ function App() {
   const [cyberWatch, setCyberWatch] = useState({
     loading: true,
     error: '',
-    items: [],
+    articles: [],
+    vulnerabilities: [],
     generatedAt: ''
   });
 
@@ -358,7 +359,8 @@ function App() {
         setCyberWatch({
           loading: false,
           error: '',
-          items: Array.isArray(payload.items) ? payload.items.slice(0, 8) : [],
+          articles: Array.isArray(payload.articles) ? payload.articles.slice(0, 3) : [],
+          vulnerabilities: Array.isArray(payload.vulnerabilities) ? payload.vulnerabilities.slice(0, 3) : [],
           generatedAt: payload.generatedAt || ''
         });
       } catch (error) {
@@ -369,7 +371,8 @@ function App() {
         setCyberWatch({
           loading: false,
           error: 'Cyber watch feed is temporarily unavailable.',
-          items: [],
+          articles: [],
+          vulnerabilities: [],
           generatedAt: ''
         });
       }
@@ -537,7 +540,7 @@ function App() {
         <section id="cyber-watch" className="panel section">
           <h2>Cybersecurity <span>Watch</span></h2>
           <p className="cyber-watch-intro">
-            Live aggregation of official vulnerability feeds to track exploited CVEs and emerging security risk.
+            Live snapshot with 3 recent cybersecurity media articles and 3 current vulnerability advisories.
           </p>
           <p className="cyber-watch-meta">
             {cyberWatch.loading
@@ -549,31 +552,59 @@ function App() {
           {cyberWatch.error ? (
             <p className="cyber-watch-error">{cyberWatch.error}</p>
           ) : null}
-          {!cyberWatch.loading && cyberWatch.items.length === 0 ? (
+          {!cyberWatch.loading && cyberWatch.articles.length === 0 && cyberWatch.vulnerabilities.length === 0 ? (
             <p className="cyber-watch-empty">No advisories available right now.</p>
           ) : null}
-          <div className="cyber-watch-grid">
-            {cyberWatch.items.map((item) => (
-              <article className="cyber-watch-card" key={`${item.id}-${item.source}`}>
-                <header className="cyber-watch-card-head">
-                  <h3>{item.id}</h3>
-                  <span className={`severity-pill ${severityClassName(item.severity)}`}>
-                    {item.severity || 'Info'}
-                  </span>
-                </header>
-                <p className="cyber-watch-title">{item.title}</p>
-                <p className="cyber-watch-summary">{item.summary}</p>
-                <footer className="cyber-watch-foot">
-                  <span className="source-pill">{item.source || 'Feed'}</span>
-                  <span>
-                    {item.publishedAt
-                      ? new Date(item.publishedAt).toLocaleDateString('en-CA')
-                      : 'Unknown date'}
-                  </span>
-                  <a href={item.url} target="_blank" rel="noreferrer">Details</a>
-                </footer>
-              </article>
-            ))}
+          <div className="cyber-watch-split">
+            <div>
+              <h3 className="cyber-watch-subheading">Recent Cybersecurity Articles</h3>
+              <div className="cyber-watch-grid">
+                {cyberWatch.articles.map((item) => (
+                  <article className="cyber-watch-card" key={`${item.url}-${item.source}`}>
+                    <header className="cyber-watch-card-head">
+                      <h3>{item.title}</h3>
+                      <span className="source-pill">{item.source || 'Media'}</span>
+                    </header>
+                    <p className="cyber-watch-summary">{item.summary}</p>
+                    <footer className="cyber-watch-foot">
+                      <span>
+                        {item.publishedAt
+                          ? new Date(item.publishedAt).toLocaleDateString('en-CA')
+                          : 'Unknown date'}
+                      </span>
+                      <a href={item.url} target="_blank" rel="noreferrer">Read</a>
+                    </footer>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="cyber-watch-subheading">Recent Vulnerabilities</h3>
+              <div className="cyber-watch-grid">
+                {cyberWatch.vulnerabilities.map((item) => (
+                  <article className="cyber-watch-card" key={`${item.id}-${item.source}`}>
+                    <header className="cyber-watch-card-head">
+                      <h3>{item.id}</h3>
+                      <span className={`severity-pill ${severityClassName(item.severity)}`}>
+                        {item.severity || 'Info'}
+                      </span>
+                    </header>
+                    <p className="cyber-watch-title">{item.title}</p>
+                    <p className="cyber-watch-summary">{item.summary}</p>
+                    <footer className="cyber-watch-foot">
+                      <span className="source-pill">{item.source || 'Feed'}</span>
+                      <span>
+                        {item.publishedAt
+                          ? new Date(item.publishedAt).toLocaleDateString('en-CA')
+                          : 'Unknown date'}
+                      </span>
+                      <a href={item.url} target="_blank" rel="noreferrer">Details</a>
+                    </footer>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 

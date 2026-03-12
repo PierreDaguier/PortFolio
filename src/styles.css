@@ -554,6 +554,20 @@ h2 span {
   margin-top: 1rem;
   display: grid;
   gap: 0.9rem;
+  grid-template-columns: 1fr;
+}
+
+.cyber-watch-split {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.cyber-watch-subheading {
+  margin: 0;
+  color: var(--green);
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
 }
 
 .cyber-watch-card {
@@ -573,8 +587,9 @@ h2 span {
 }
 
 .cyber-watch-card h3 {
-  color: var(--green);
-  font-size: 1.1rem;
+  color: #d6f3e2;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 .cyber-watch-title {
@@ -800,7 +815,7 @@ h2 span {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .cyber-watch-grid {
+  .cyber-watch-split {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
