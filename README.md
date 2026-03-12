@@ -1,24 +1,37 @@
-# Pierre Portfolio
+# Pierre Daguier Portfolio
 
-Modern freelance portfolio rebuilt with React + Vite.
+Personal portfolio website for a senior software engineer focused on automation, backend systems, and observability.
 
-## Tech stack
+Live site: https://pierredaguier.com
+
+## Tech Stack
 - React 19
 - Vite 5
-- Custom CSS (responsive, animation-ready)
+- Custom CSS animations (desktop + mobile responsive)
 
-## Run locally
+## Featured Projects
+- Event-Driven Automation Platform  
+  https://github.com/PierreDaguier/event-driven-automation-platform
+- Production-Ready Go Service Template  
+  https://github.com/PierreDaguier/go-service-template-pro
+- Observability Command Center Demo  
+  https://github.com/PierreDaguier/observability-command-center-demo
+- AI Automation Command Center  
+  https://github.com/PierreDaguier/ai-automation-command-center
+
+## Local Development
 ```bash
 npm install
 npm run dev
 ```
 
-## Production build
+## Production Build
 ```bash
 npm run build
 npm run preview
 ```
 
-## Included projects
-- JCU Weather Prediction: https://jcu-weather-prediction.netlify.app
-- CryptoCactus: https://www.cryptocactus.net
+## Contact
+- Email: pierredaguier@gmail.com
+- LinkedIn: https://www.linkedin.com/in/pierre-daguier/
+- GitHub: https://github.com/PierreDaguier
