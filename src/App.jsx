@@ -3,13 +3,13 @@ import { useEffect, useRef } from 'react';
 const journeyItems = [
   {
     company: 'James Cook University',
-    role: 'Senior Software Engineer',
+    role: 'Senior Software Engineer · Research Team',
     period: '2.5 years',
     place: 'Townsville, Australia',
     bullets: [
-      'Designed and maintained production software used in an academic and operational context.',
-      'Delivered backend and integration features with an emphasis on reliability and maintainability.',
-      'Collaborated with stakeholders to turn complex requirements into clear technical deliverables.'
+      'Built and maintained research-facing systems supporting thesis and publication workflows.',
+      'Delivered EPrint and SQL-backed capabilities for reliable academic data management and retrieval.',
+      'Collaborated with researchers and stakeholders to translate complex research requirements into robust software.'
     ]
   },
   {
