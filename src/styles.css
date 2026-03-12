@@ -301,12 +301,21 @@ h2 span {
   border-radius: 14px;
   padding: 0.9rem;
   background: rgba(3, 18, 11, 0.72);
+  text-align: center;
 }
 
-.stats strong {
+.stat-value {
   display: block;
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-size: clamp(1.05rem, 2.9vw, 1.65rem);
+  line-height: 1.12;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   color: var(--green);
+}
+
+.stat-value-number {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
 }
 
 .stats span {
