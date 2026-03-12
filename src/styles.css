@@ -247,7 +247,6 @@ h2 span {
 }
 
 .timeline-card,
-.skill-card,
 .project-card,
 .contact-form,
 .contact-links-panel a {
@@ -297,18 +296,15 @@ h2 span {
   line-height: 1.6;
 }
 
-.skill-grid,
 .project-grid {
   display: grid;
   gap: 1rem;
 }
 
-.skill-card,
 .project-card {
   padding: 1rem;
 }
 
-.skill-card h3,
 .project-card h3 {
   color: var(--green);
   font-size: 1.55rem;
@@ -334,6 +330,26 @@ h2 span {
   margin-top: 1rem;
   display: grid;
   gap: 0.7rem;
+}
+
+.skills-intro {
+  margin: 0 auto;
+  max-width: 62ch;
+  text-align: center;
+  color: var(--text-soft);
+}
+
+.logo-row-group {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.logo-row-label {
+  margin: 0;
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9fdab7;
 }
 
 .logo-row-mask {
@@ -503,10 +519,6 @@ h2 span {
 }
 
 @media (min-width: 920px) {
-  .skill-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
