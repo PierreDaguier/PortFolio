@@ -330,6 +330,94 @@ h2 span {
   font-size: 0.92rem;
 }
 
+.logo-marquee {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.logo-row-mask {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(1, 12, 8, 0.74);
+}
+
+.logo-row-mask::before,
+.logo-row-mask::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3.2rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-row-mask::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(1, 12, 8, 0.95), rgba(1, 12, 8, 0));
+}
+
+.logo-row-mask::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(1, 12, 8, 0.95), rgba(1, 12, 8, 0));
+}
+
+.logo-row-track {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.68rem;
+  animation: marquee-left 34s linear infinite;
+}
+
+.logo-row-track-reverse {
+  animation-name: marquee-right;
+}
+
+.logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(72, 255, 130, 0.22);
+  border-radius: 999px;
+  background: rgba(72, 255, 130, 0.06);
+  color: #cef9df;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  padding: 0.45rem 0.7rem;
+}
+
+.logo-badge img {
+  width: 0.98rem;
+  height: 0.98rem;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(72, 255, 130, 0.24));
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .project-card header {
   display: flex;
   align-items: center;
