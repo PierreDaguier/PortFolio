@@ -175,7 +175,7 @@ const caseStudies = [
     tech: ['Go', 'React', 'Vite', 'Prometheus', 'Grafana', 'Tempo', 'Loki', 'Docker'],
     links: [
       { label: 'Repository', url: 'https://github.com/PierreDaguier/go-service-template-pro' },
-      { label: 'Solution Brief', url: 'https://github.com/PierreDaguier/go-service-template-pro/blob/main/docs/pitch-freelance.md' },
+      { label: 'Solution Brief', url: 'https://github.com/PierreDaguier/go-service-template-pro/blob/main/docs/phase-0-stack-validation.md' },
       { label: 'Demo Script', url: 'https://github.com/PierreDaguier/go-service-template-pro/blob/main/docs/demo-script.md' }
     ]
   },
