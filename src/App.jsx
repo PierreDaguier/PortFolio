@@ -1,5 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
 import truffleLogo from './img/truffle.png';
+import javascriptLogo from './img/skills/javascript.svg';
+import typescriptLogo from './img/skills/typescript.svg';
+import pythonLogo from './img/skills/python.svg';
+import goLogo from './img/skills/go.svg';
+import reactLogo from './img/skills/react.svg';
+import vueLogo from './img/skills/vuedotjs.svg';
+import flutterLogo from './img/skills/flutter.svg';
+import graphqlLogo from './img/skills/graphql.svg';
+import solidityLogo from './img/skills/solidity.svg';
+import mariadbLogo from './img/skills/mariadb.svg';
+import postgresqlLogo from './img/skills/postgresql.svg';
+import mongodbLogo from './img/skills/mongodb.svg';
+import rabbitmqLogo from './img/skills/rabbitmq.svg';
+import dockerLogo from './img/skills/docker.svg';
+import jenkinsLogo from './img/skills/jenkins.svg';
+import n8nLogo from './img/skills/n8n.svg';
+import openapiLogo from './img/skills/openapiinitiative.svg';
+import prometheusLogo from './img/skills/prometheus.svg';
+import grafanaLogo from './img/skills/grafana.svg';
+import linuxLogo from './img/skills/linux.svg';
+import apacheLogo from './img/skills/apache.svg';
+import nginxLogo from './img/skills/nginx.svg';
 import nessusLogo from './img/skills/nessus.svg';
 import eprintLogo from './img/skills/eprint.svg';
 import gmailIcon from './img/contact/gmail.svg';
@@ -36,15 +58,15 @@ const logoRows = [
     title: 'Languages & Frameworks',
     reverse: false,
     items: [
-      { name: 'JavaScript', slug: 'javascript', color: 'F7DF1E' },
-      { name: 'TypeScript', slug: 'typescript', color: '3178C6' },
-      { name: 'Python', slug: 'python', color: '3776AB' },
-      { name: 'Golang', slug: 'go', color: '00ADD8' },
-      { name: 'ReactJS', slug: 'react', color: '61DAFB' },
-      { name: 'VueJS', slug: 'vuedotjs', color: '4FC08D' },
-      { name: 'Flutter', slug: 'flutter', color: '02569B' },
-      { name: 'GraphQL', slug: 'graphql', color: 'E10098' },
-      { name: 'Solidity', slug: 'solidity', color: 'FFFFFF' },
+      { name: 'JavaScript', asset: javascriptLogo },
+      { name: 'TypeScript', asset: typescriptLogo },
+      { name: 'Python', asset: pythonLogo },
+      { name: 'Golang', asset: goLogo },
+      { name: 'ReactJS', asset: reactLogo },
+      { name: 'VueJS', asset: vueLogo },
+      { name: 'Flutter', asset: flutterLogo },
+      { name: 'GraphQL', asset: graphqlLogo },
+      { name: 'Solidity', asset: solidityLogo },
       { name: 'Truffle', asset: truffleLogo }
     ]
   },
@@ -52,27 +74,26 @@ const logoRows = [
     title: 'Backend, Data, DevOps & Reliability',
     reverse: true,
     items: [
-      { name: 'MariaDB', slug: 'mariadb', color: '003545' },
-      { name: 'PostgreSQL', slug: 'postgresql', color: '4169E1' },
-      { name: 'MongoDB', slug: 'mongodb', color: '47A248' },
-      { name: 'RabbitMQ', slug: 'rabbitmq', color: 'FF6600' },
-      { name: 'Docker', slug: 'docker', color: '2496ED' },
-      { name: 'Jenkins', slug: 'jenkins', color: 'D24939' },
-      { name: 'n8n', slug: 'n8n', color: 'EA4B71' },
-      { name: 'OpenAPI', slug: 'openapiinitiative', color: '6BA539' },
-      { name: 'Prometheus', slug: 'prometheus', color: 'E6522C' },
-      { name: 'Grafana', slug: 'grafana', color: 'F46800' },
-      { name: 'Linux', slug: 'linux', color: 'FCC624' },
-      { name: 'Apache', slug: 'apache', color: 'D22128' },
-      { name: 'Nginx', slug: 'nginx', color: '009639' },
+      { name: 'MariaDB', asset: mariadbLogo },
+      { name: 'PostgreSQL', asset: postgresqlLogo },
+      { name: 'MongoDB', asset: mongodbLogo },
+      { name: 'RabbitMQ', asset: rabbitmqLogo },
+      { name: 'Docker', asset: dockerLogo },
+      { name: 'Jenkins', asset: jenkinsLogo },
+      { name: 'n8n', asset: n8nLogo },
+      { name: 'OpenAPI', asset: openapiLogo },
+      { name: 'Prometheus', asset: prometheusLogo },
+      { name: 'Grafana', asset: grafanaLogo },
+      { name: 'Linux', asset: linuxLogo },
+      { name: 'Apache', asset: apacheLogo },
+      { name: 'Nginx', asset: nginxLogo },
       { name: 'Nessus', asset: nessusLogo },
       { name: 'EPrint', asset: eprintLogo }
     ]
   }
 ];
 
-const logoUrl = (slug, color) => `https://cdn.simpleicons.org/${slug}/${color}`;
-const logoSource = (logo) => logo.asset || logoUrl(logo.slug, logo.color);
+const logoSource = (logo) => logo.asset || FALLBACK_LOGO;
 const logoId = (logo) => logo.slug || logo.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 const FALLBACK_LOGO = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='9' fill='%2348ff82'/></svg>";
 const HERO_TYPEWRITER_TITLES = [
