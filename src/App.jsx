@@ -421,15 +421,54 @@ function App() {
 
             <aside className="contact-links-panel">
               <a href="mailto:pierredaguier@gmail.com">
-                <h3>Email</h3>
+                <div className="contact-link-head">
+                  <span className="contact-icon" aria-hidden="true">
+                    <img
+                      src="https://cdn.simpleicons.org/gmail/48ff82"
+                      alt=""
+                      loading="lazy"
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = FALLBACK_LOGO;
+                      }}
+                    />
+                  </span>
+                  <h3>Gmail</h3>
+                </div>
                 <p>pierredaguier@gmail.com</p>
               </a>
               <a href="https://www.linkedin.com/in/pierre-daguier/" target="_blank" rel="noreferrer">
-                <h3>LinkedIn</h3>
+                <div className="contact-link-head">
+                  <span className="contact-icon" aria-hidden="true">
+                    <img
+                      src="https://cdn.simpleicons.org/linkedin/48ff82"
+                      alt=""
+                      loading="lazy"
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = FALLBACK_LOGO;
+                      }}
+                    />
+                  </span>
+                  <h3>LinkedIn</h3>
+                </div>
                 <p>Connect professionally</p>
               </a>
               <a href="https://github.com/PierreDaguier" target="_blank" rel="noreferrer">
-                <h3>GitHub</h3>
+                <div className="contact-link-head">
+                  <span className="contact-icon" aria-hidden="true">
+                    <img
+                      src="https://cdn.simpleicons.org/github/48ff82"
+                      alt=""
+                      loading="lazy"
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = FALLBACK_LOGO;
+                      }}
+                    />
+                  </span>
+                  <h3>GitHub</h3>
+                </div>
                 <p>Explore code and projects</p>
               </a>
             </aside>
