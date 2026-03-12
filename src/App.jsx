@@ -546,15 +546,15 @@ function App() {
           </div>
           <div className="stats">
             <div>
-              <strong>4+</strong>
+              <strong className="stat-value stat-value-number">4+</strong>
               <span>Years in Production</span>
             </div>
             <div>
-              <strong>Research/Product</strong>
+              <strong className="stat-value">Research + Product</strong>
               <span>Real-world delivery environments</span>
             </div>
             <div>
-              <strong>AU + DE</strong>
+              <strong className="stat-value">AU + DE</strong>
               <span>Cross-region professional experience</span>
             </div>
           </div>
