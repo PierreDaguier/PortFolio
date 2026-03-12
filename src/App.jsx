@@ -31,12 +31,12 @@ const skillGroups = [
     items: ['JavaScript', 'TypeScript', 'Python', 'Golang', 'ReactJS', 'VueJS', 'Flutter', 'GraphQL', 'Solidity', 'Truffle']
   },
   {
-    title: 'Data & Messaging',
-    items: ['MariaDB', 'PostgreSQL', 'MongoDB', 'RabbitMQ']
+    title: 'Backend, Data & APIs',
+    items: ['MariaDB', 'PostgreSQL', 'MongoDB', 'RabbitMQ', 'REST APIs', 'OpenAPI', 'Microservices']
   },
   {
-    title: 'Automation, Security & Ops',
-    items: ['n8n', 'Jenkins', 'Prometheus', 'Nessus', 'EPrint']
+    title: 'Automation, DevOps & Reliability',
+    items: ['Docker', 'CI/CD', 'Jenkins', 'n8n', 'Prometheus', 'Grafana', 'Linux', 'Apache', 'Nginx', 'Nessus', 'EPrint']
   }
 ];
 
