@@ -99,7 +99,7 @@ const FALLBACK_LOGO = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/200
 const HERO_TYPEWRITER_TITLES = [
   'Full-stack engineer',
   'Automation engineer',
-  'Blockchain engineer',
+  'API integration engineer',
   'DevOps / Cybersecurity engineer'
 ];
 
@@ -241,6 +241,7 @@ function App() {
     deleting: false,
     reducedMotion: false
   });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -288,6 +289,28 @@ function App() {
     return () => window.clearTimeout(timeoutId);
   }, [typingState]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 920) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
   const currentPhrase = HERO_TYPEWRITER_TITLES[typingState.phraseIndex];
   const typedSubtitle = typingState.reducedMotion
     ? HERO_TYPEWRITER_TITLES[0]
@@ -300,12 +323,24 @@ function App() {
 
       <header className="nav-shell">
         <a href="#home" className="logo">Pierre Daguier</a>
-        <nav className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#journey">Journey</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+        <button
+          type="button"
+          className={`menu-toggle ${mobileMenuOpen ? 'is-open' : ''}`}
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="primary-nav"
+          onClick={() => setMobileMenuOpen((previous) => !previous)}
+        >
+          <span className="menu-toggle-bar" />
+          <span className="menu-toggle-bar" />
+          <span className="menu-toggle-bar" />
+        </button>
+        <nav id="primary-nav" className={`nav-links ${mobileMenuOpen ? 'nav-open' : ''}`}>
+          <a href="#home" onClick={() => setMobileMenuOpen(false)}>Home</a>
+          <a href="#journey" onClick={() => setMobileMenuOpen(false)}>Journey</a>
+          <a href="#skills" onClick={() => setMobileMenuOpen(false)}>Skills</a>
+          <a href="#projects" onClick={() => setMobileMenuOpen(false)}>Projects</a>
+          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
         </nav>
       </header>
 
@@ -325,7 +360,7 @@ function App() {
             </span>
           </p>
           <p className="hero-text">
-            4+ years across enterprise software engineering, blockchain products, and production-grade platform delivery.
+            4+ years across enterprise software engineering, automation workflows, and production-grade platform delivery.
           </p>
           <div className="hero-actions">
             <a className="btn btn-solid" href="#contact">Get in touch</a>
