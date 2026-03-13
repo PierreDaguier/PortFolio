@@ -121,7 +121,7 @@ const severityClassName = (severity) => {
   return 'severity-info';
 };
 
-const DISCOVERY_CALL_URL = 'mailto:pierredaguier@gmail.com?subject=Discovery%20Call%20Request';
+const DISCOVERY_CALL_URL = 'https://cal.com/pierre-daguier/discovery-call';
 const BRISBANE_TIMEZONE = 'Australia/Brisbane';
 const BRISBANE_WINDOW_START_HOUR = 8;
 const BRISBANE_WINDOW_END_HOUR = 20;
