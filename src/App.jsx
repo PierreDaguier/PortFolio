@@ -27,6 +27,10 @@ import eprintLogo from './img/skills/eprint.svg';
 import gmailIcon from './img/contact/gmail.svg';
 import linkedinIcon from './img/contact/linkedin.svg';
 import githubIcon from './img/contact/github.svg';
+import eventDrivenPreview from './img/project-previews/event-driven-preview.gif';
+import goServicePreview from './img/project-previews/go-service-preview.gif';
+import observabilityPreview from './img/project-previews/observability-preview.gif';
+import aiAutomationPreview from './img/project-previews/ai-automation-preview.gif';
 
 const journeyItems = [
   {
@@ -178,6 +182,7 @@ const caseStudies = [
     title: 'Event-Driven Automation Platform',
     label: 'Automation',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/event-driven-automation-platform/main/docs/screenshots/02-dashboard-overview.png',
+    previewUrl: eventDrivenPreview,
     visualAlt: 'Event-driven automation platform dashboard overview',
     signals: ['Secure webhooks', 'Retry + DLQ flow', 'Traceable execution'],
     context: 'Needed secure webhook ingestion and asynchronous processing for bursty B2B workflows.',
@@ -198,6 +203,7 @@ const caseStudies = [
     title: 'Production-Ready Go Service Template',
     label: 'Backend',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/go-service-template-pro/main/assets/screenshots/overview.png',
+    previewUrl: goServicePreview,
     visualAlt: 'Go service template operations overview dashboard',
     signals: ['Clean architecture', 'Ops control panel', 'Observability-first'],
     context: 'Teams needed a reusable Go service base without compromising security or operability.',
@@ -218,6 +224,7 @@ const caseStudies = [
     title: 'Observability Command Center Demo',
     label: 'Observability',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/observability-command-center-demo/main/docs/architecture/command-center-architecture.svg',
+    previewUrl: observabilityPreview,
     visualAlt: 'Observability command center architecture map',
     signals: ['Incident narrative', 'Signal correlation', 'Stakeholder visibility'],
     context: 'Incident communication needed to work for both engineers and non-technical decision-makers.',
@@ -238,6 +245,7 @@ const caseStudies = [
     title: 'AI Automation Command Center',
     label: 'AI Agents',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/ai-automation-command-center/main/docs/media/demo-dashboard.png',
+    previewUrl: aiAutomationPreview,
     visualAlt: 'AI automation command center dashboard',
     signals: ['Human approvals', 'Audit trail', 'Agent orchestration'],
     context: 'Automation needed governance: human approvals, traceability, and compliance-friendly records.',
@@ -723,13 +731,34 @@ function App() {
               >
                 <div className="case-visual">
                   <img
+                    className="case-visual-still"
                     src={project.visualUrl}
                     alt={project.visualAlt}
                     loading="lazy"
                     onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      if (project.previewUrl) {
+                        event.currentTarget.src = project.previewUrl;
+                        return;
+                      }
                       event.currentTarget.style.opacity = '0';
                     }}
                   />
+                  {project.previewUrl ? (
+                    <img
+                      className="case-visual-motion"
+                      src={project.previewUrl}
+                      alt=""
+                      loading="lazy"
+                      aria-hidden="true"
+                      onError={(event) => {
+                        event.currentTarget.style.opacity = '0';
+                      }}
+                    />
+                  ) : null}
+                  <span className="case-visual-badge" aria-hidden="true">
+                    Hover preview
+                  </span>
                   <div className="case-visual-overlay" aria-hidden="true" />
                   <div className="case-signals">
                     {project.signals.map((signal) => (
@@ -952,7 +981,7 @@ function App() {
                   </span>
                   <h3>LinkedIn</h3>
                 </div>
-                <p>Connect professionally</p>
+                <p>Open to collaboration and opportunities</p>
               </a>
               <a href="https://github.com/PierreDaguier" target="_blank" rel="noreferrer">
                 <div className="contact-link-head">
