@@ -493,6 +493,34 @@ h2 span {
     linear-gradient(160deg, rgba(4, 20, 13, 0.9), rgba(1, 11, 8, 0.95));
 }
 
+.project-card-automation .case-visual {
+  border-color: rgba(72, 255, 130, 0.28);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(72, 255, 130, 0.22), rgba(1, 14, 10, 0.62) 52%),
+    linear-gradient(152deg, rgba(2, 18, 12, 0.94), rgba(1, 10, 8, 0.96));
+}
+
+.project-card-backend .case-visual {
+  border-color: rgba(82, 210, 255, 0.24);
+  background:
+    radial-gradient(circle at 24% 84%, rgba(82, 210, 255, 0.18), rgba(1, 12, 10, 0.72) 50%),
+    linear-gradient(152deg, rgba(3, 17, 19, 0.94), rgba(1, 10, 8, 0.96));
+}
+
+.project-card-observability .case-visual {
+  border-color: rgba(110, 255, 202, 0.24);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(110, 255, 202, 0.14), rgba(1, 14, 12, 0.74) 55%),
+    linear-gradient(152deg, rgba(2, 15, 14, 0.95), rgba(1, 10, 9, 0.96));
+}
+
+.project-card-agents .case-visual {
+  border-color: rgba(118, 255, 170, 0.26);
+  background:
+    radial-gradient(circle at 16% 16%, rgba(118, 255, 170, 0.15), rgba(1, 14, 10, 0.72) 50%),
+    linear-gradient(152deg, rgba(2, 16, 11, 0.96), rgba(1, 9, 7, 0.97));
+}
+
 .case-visual::after {
   content: '';
   position: absolute;
@@ -507,6 +535,49 @@ h2 span {
   mix-blend-mode: screen;
   animation: case-scan 7s linear infinite;
   pointer-events: none;
+}
+
+.project-card-backend .case-visual::after {
+  background:
+    linear-gradient(90deg, rgba(82, 210, 255, 0.06), transparent 32%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(82, 210, 255, 0.025) 0px,
+      rgba(82, 210, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+.project-card-observability .case-visual::after {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(110, 255, 202, 0.03) 0px,
+      rgba(110, 255, 202, 0.03) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(110, 255, 202, 0.03) 0px,
+      rgba(110, 255, 202, 0.03) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+  animation: case-scan-reverse 10s linear infinite;
+}
+
+.project-card-agents .case-visual::after {
+  background:
+    linear-gradient(180deg, rgba(118, 255, 170, 0.05), transparent 55%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(118, 255, 170, 0.02) 0px,
+      rgba(118, 255, 170, 0.02) 1px,
+      transparent 1px,
+      transparent 3px
+    );
 }
 
 .case-visual img {
@@ -531,6 +602,18 @@ h2 span {
   pointer-events: none;
 }
 
+.project-card-backend .case-visual-motion {
+  transform: translateX(6%) scale(1.03);
+}
+
+.project-card-observability .case-visual-motion {
+  filter: hue-rotate(15deg) saturate(1.08);
+}
+
+.project-card-agents .case-visual-motion {
+  filter: saturate(1.16) contrast(1.05);
+}
+
 .project-card:hover .case-visual-still {
   transform: scale(1.04);
   opacity: 0;
@@ -541,6 +624,15 @@ h2 span {
   opacity: 0.9;
 }
 
+.project-card-backend:hover .case-visual-motion {
+  transform: translateX(0) scale(1.02);
+}
+
+.project-card-agents:hover .case-visual-still {
+  transform: scale(1.02);
+  opacity: 0.05;
+}
+
 .case-visual-overlay {
   position: absolute;
   inset: 0;
@@ -548,6 +640,24 @@ h2 span {
     linear-gradient(180deg, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.68) 100%),
     radial-gradient(circle at 80% 20%, rgba(72, 255, 130, 0.25), transparent 55%);
   pointer-events: none;
+}
+
+.project-card-backend .case-visual-overlay {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0.7) 100%),
+    radial-gradient(circle at 15% 20%, rgba(82, 210, 255, 0.2), transparent 52%);
+}
+
+.project-card-observability .case-visual-overlay {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04) 36%, rgba(0, 0, 0, 0.72) 100%),
+    radial-gradient(circle at 50% 14%, rgba(110, 255, 202, 0.16), transparent 56%);
+}
+
+.project-card-agents .case-visual-overlay {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02) 42%, rgba(0, 0, 0, 0.72) 100%),
+    radial-gradient(circle at 85% 20%, rgba(118, 255, 170, 0.2), transparent 52%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -589,6 +699,15 @@ h2 span {
   }
   100% {
     transform: translateY(8%);
+  }
+}
+
+@keyframes case-scan-reverse {
+  0% {
+    transform: translateY(8%);
+  }
+  100% {
+    transform: translateY(-8%);
   }
 }
 
@@ -741,6 +860,30 @@ h2 span {
   white-space: nowrap;
 }
 
+.pill-automation {
+  color: #48ff82;
+  border-color: rgba(72, 255, 130, 0.35);
+  background: rgba(72, 255, 130, 0.08);
+}
+
+.pill-backend {
+  color: #86e4ff;
+  border-color: rgba(134, 228, 255, 0.35);
+  background: rgba(88, 214, 255, 0.1);
+}
+
+.pill-observability {
+  color: #8dffd2;
+  border-color: rgba(141, 255, 210, 0.35);
+  background: rgba(110, 255, 202, 0.1);
+}
+
+.pill-agents {
+  color: #98ffb8;
+  border-color: rgba(152, 255, 184, 0.35);
+  background: rgba(118, 255, 170, 0.1);
+}
+
 .project-card p {
   color: var(--text-soft);
   line-height: 1.65;
@@ -766,6 +909,26 @@ h2 span {
 .case-impact li {
   color: var(--text-soft);
   line-height: 1.55;
+}
+
+.case-signals-backend span {
+  border-radius: 10px;
+  border-color: rgba(134, 228, 255, 0.35);
+  background: rgba(6, 25, 33, 0.84);
+  color: #c7eeff;
+}
+
+.case-signals-observability span {
+  border-color: rgba(141, 255, 210, 0.34);
+  background: rgba(2, 19, 14, 0.86);
+  color: #d3ffe9;
+  letter-spacing: 0.03em;
+}
+
+.case-signals-agents span {
+  border-color: rgba(152, 255, 184, 0.34);
+  background: rgba(2, 20, 12, 0.88);
+  color: #dcffe8;
 }
 
 .proof-links {
