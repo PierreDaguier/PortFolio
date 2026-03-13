@@ -756,9 +756,6 @@ function App() {
                       }}
                     />
                   ) : null}
-                  <span className="case-visual-badge" aria-hidden="true">
-                    Hover preview
-                  </span>
                   <div className="case-visual-overlay" aria-hidden="true" />
                   <div className="case-signals">
                     {project.signals.map((signal) => (

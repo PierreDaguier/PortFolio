@@ -541,26 +541,6 @@ h2 span {
   opacity: 0.9;
 }
 
-.case-visual-badge {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  z-index: 3;
-  border: 1px solid rgba(72, 255, 130, 0.3);
-  border-radius: 999px;
-  background: rgba(1, 15, 9, 0.78);
-  color: #d3fae4;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  padding: 0.24rem 0.54rem;
-  backdrop-filter: blur(3px);
-}
-
-.project-card:hover .case-visual-badge {
-  opacity: 0.88;
-}
-
 .case-visual-overlay {
   position: absolute;
   inset: 0;
