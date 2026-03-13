@@ -515,12 +515,49 @@ h2 span {
   height: clamp(170px, 28vw, 250px);
   object-fit: cover;
   object-position: center;
-  opacity: 0.75;
+}
+
+.case-visual-still {
+  opacity: 0.8;
   transition: transform 0.42s ease, opacity 0.42s ease;
 }
 
-.project-card:hover .case-visual img {
-  transform: scale(1.025);
+.case-visual-motion {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: transform 0.42s ease, opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.project-card:hover .case-visual-still {
+  transform: scale(1.04);
+  opacity: 0;
+}
+
+.project-card:hover .case-visual-motion {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.case-visual-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 3;
+  border: 1px solid rgba(72, 255, 130, 0.3);
+  border-radius: 999px;
+  background: rgba(1, 15, 9, 0.78);
+  color: #d3fae4;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.24rem 0.54rem;
+  backdrop-filter: blur(3px);
+}
+
+.project-card:hover .case-visual-badge {
   opacity: 0.88;
 }
 
@@ -531,6 +568,17 @@ h2 span {
     linear-gradient(180deg, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.68) 100%),
     radial-gradient(circle at 80% 20%, rgba(72, 255, 130, 0.25), transparent 55%);
   pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-visual-motion {
+    display: none;
+  }
+
+  .project-card:hover .case-visual-still {
+    transform: none;
+    opacity: 0.82;
+  }
 }
 
 .case-signals {
