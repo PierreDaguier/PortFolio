@@ -27,6 +27,10 @@ import eprintLogo from './img/skills/eprint.svg';
 import gmailIcon from './img/contact/gmail.svg';
 import linkedinIcon from './img/contact/linkedin.svg';
 import githubIcon from './img/contact/github.svg';
+import eventDrivenPreview from './img/project-previews/event-driven-preview.gif';
+import goServicePreview from './img/project-previews/go-service-preview.gif';
+import observabilityPreview from './img/project-previews/observability-preview.gif';
+import aiAutomationPreview from './img/project-previews/ai-automation-preview.gif';
 
 const journeyItems = [
   {
@@ -180,6 +184,7 @@ const caseStudies = [
     label: 'Automation',
     identity: 'Workflow Cockpit',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/event-driven-automation-platform/main/docs/screenshots/02-dashboard-overview.png',
+    previewUrl: eventDrivenPreview,
     visualAlt: 'Event-driven automation platform dashboard overview',
     signals: ['Secure webhooks', 'Retry + DLQ flow', 'Traceable execution'],
     context: 'Needed secure webhook ingestion and asynchronous processing for bursty B2B workflows.',
@@ -202,6 +207,7 @@ const caseStudies = [
     label: 'Backend',
     identity: 'Control Plane',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/go-service-template-pro/main/assets/screenshots/overview.png',
+    previewUrl: goServicePreview,
     visualAlt: 'Go service template operations overview dashboard',
     signals: ['Clean architecture', 'Ops control panel', 'Observability-first'],
     context: 'Teams needed a reusable Go service base without compromising security or operability.',
@@ -224,6 +230,7 @@ const caseStudies = [
     label: 'Observability',
     identity: 'Incident War Room',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/observability-command-center-demo/main/docs/architecture/command-center-architecture.svg',
+    previewUrl: observabilityPreview,
     visualAlt: 'Observability command center architecture map',
     signals: ['Incident narrative', 'Signal correlation', 'Stakeholder visibility'],
     context: 'Incident communication needed to work for both engineers and non-technical decision-makers.',
@@ -246,6 +253,7 @@ const caseStudies = [
     label: 'AI Agents',
     identity: 'Governed Ops',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/ai-automation-command-center/main/docs/media/demo-dashboard.png',
+    previewUrl: aiAutomationPreview,
     visualAlt: 'AI automation command center dashboard',
     signals: ['Human approvals', 'Audit trail', 'Agent orchestration'],
     context: 'Automation needed governance: human approvals, traceability, and compliance-friendly records.',
@@ -740,7 +748,18 @@ function App() {
                       event.currentTarget.style.opacity = '0';
                     }}
                   />
-                  <div className="case-visual-motion" aria-hidden="true" />
+                  {project.previewUrl ? (
+                    <img
+                      className="case-visual-motion"
+                      src={project.previewUrl}
+                      alt=""
+                      loading="lazy"
+                      aria-hidden="true"
+                      onError={(event) => {
+                        event.currentTarget.style.opacity = '0';
+                      }}
+                    />
+                  ) : null}
                   <div className="case-visual-overlay" aria-hidden="true" />
                   <p className="case-identity">{project.identity}</p>
                   <div className={`case-signals case-signals-${project.theme}`}>
