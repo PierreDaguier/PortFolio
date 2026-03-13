@@ -686,36 +686,32 @@ h2 span {
 .case-visual-motion {
   position: absolute;
   inset: 0;
-  opacity: 0.62;
-  transform: scale(1.02) translateY(0);
+  opacity: 0;
+  transform: scale(1.03) translateY(1%);
   transition: transform 0.42s ease, opacity 0.35s ease;
-  background: var(--case-motion);
   pointer-events: none;
 }
 
 .project-card-backend .case-visual-motion {
-  opacity: 0.7;
   transform: scale(1.03) translateX(4%);
 }
 
 .project-card-observability .case-visual-motion {
-  opacity: 0.64;
-  transform: scale(1.02) translateX(-2%);
+  transform: scale(1.03) translateX(-2%);
 }
 
 .project-card-agents .case-visual-motion {
-  opacity: 0.72;
-  transform: scale(1.03) translateY(2%);
+  transform: scale(1.04) translateY(2%);
 }
 
 .project-card:hover .case-visual-still {
   transform: scale(1.04);
-  opacity: 0.22;
+  opacity: 0.06;
 }
 
 .project-card:hover .case-visual-motion {
   transform: scale(1.02);
-  opacity: 0.92;
+  opacity: 0.94;
 }
 
 .project-card-backend:hover .case-visual-motion {
@@ -776,8 +772,7 @@ h2 span {
 
 @media (prefers-reduced-motion: reduce) {
   .case-visual-motion {
-    opacity: 0.45;
-    transform: none;
+    display: none;
   }
 
   .project-card:hover .case-visual-still {
