@@ -473,111 +473,200 @@ h2 span {
 }
 
 .project-card {
+  --case-accent: #48ff82;
+  --case-contrast: #ddffea;
+  --case-border: rgba(72, 255, 130, 0.3);
+  --case-card-bg:
+    linear-gradient(160deg, rgba(4, 20, 13, 0.74), rgba(1, 10, 8, 0.9));
+  --case-visual-bg:
+    radial-gradient(circle at 20% 20%, rgba(72, 255, 130, 0.18), rgba(2, 16, 10, 0.7) 50%),
+    linear-gradient(160deg, rgba(4, 20, 13, 0.9), rgba(1, 11, 8, 0.95));
+  --case-signal-bg: rgba(1, 15, 9, 0.85);
+  --case-signal-shape: 999px;
+  --case-chip-bg: rgba(72, 255, 130, 0.08);
+  --case-chip-border: rgba(72, 255, 130, 0.28);
+  --case-link-bg: rgba(72, 255, 130, 0.07);
+  --case-link-border: rgba(72, 255, 130, 0.35);
+  --case-motion:
+    radial-gradient(circle at 18% 78%, rgba(72, 255, 130, 0.2), transparent 45%),
+    linear-gradient(120deg, rgba(72, 255, 130, 0.06), transparent 55%);
   padding: 1rem;
   overflow: hidden;
+  background: var(--case-card-bg);
+}
+
+.project-card-automation {
+  --case-accent: #53ff9e;
+  --case-contrast: #dbffe8;
+  --case-border: rgba(83, 255, 158, 0.34);
+  --case-card-bg:
+    radial-gradient(circle at 100% 0%, rgba(83, 255, 158, 0.16), transparent 30%),
+    linear-gradient(155deg, rgba(2, 16, 12, 0.82), rgba(1, 10, 7, 0.93));
+  --case-visual-bg:
+    radial-gradient(circle at 78% 18%, rgba(83, 255, 158, 0.22), rgba(1, 14, 10, 0.62) 52%),
+    linear-gradient(152deg, rgba(2, 18, 12, 0.94), rgba(1, 10, 8, 0.96));
+  --case-signal-bg: rgba(2, 17, 11, 0.88);
+  --case-motion:
+    linear-gradient(180deg, rgba(83, 255, 158, 0.06), transparent 68%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(83, 255, 158, 0.04) 0px,
+      rgba(83, 255, 158, 0.04) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+.project-card-backend {
+  --case-accent: #8ad6ff;
+  --case-contrast: #d6f2ff;
+  --case-border: rgba(138, 214, 255, 0.34);
+  --case-card-bg:
+    radial-gradient(circle at 0% 100%, rgba(138, 214, 255, 0.16), transparent 30%),
+    linear-gradient(155deg, rgba(4, 15, 22, 0.84), rgba(2, 9, 14, 0.94));
+  --case-visual-bg:
+    radial-gradient(circle at 24% 84%, rgba(138, 214, 255, 0.2), rgba(1, 12, 10, 0.72) 50%),
+    linear-gradient(152deg, rgba(3, 17, 22, 0.95), rgba(1, 10, 8, 0.96));
+  --case-signal-bg: rgba(6, 25, 33, 0.84);
+  --case-signal-shape: 10px;
+  --case-chip-bg: rgba(88, 214, 255, 0.12);
+  --case-chip-border: rgba(138, 214, 255, 0.34);
+  --case-link-bg: rgba(88, 214, 255, 0.1);
+  --case-link-border: rgba(138, 214, 255, 0.38);
+  --case-motion:
+    repeating-linear-gradient(
+      90deg,
+      rgba(138, 214, 255, 0.07) 0px,
+      rgba(138, 214, 255, 0.07) 1px,
+      transparent 1px,
+      transparent 28px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(138, 214, 255, 0.05) 0px,
+      rgba(138, 214, 255, 0.05) 1px,
+      transparent 1px,
+      transparent 22px
+    );
+}
+
+.project-card-observability {
+  --case-accent: #5cf2d0;
+  --case-contrast: #e1fff8;
+  --case-border: rgba(92, 242, 208, 0.35);
+  --case-card-bg:
+    radial-gradient(circle at 50% 0%, rgba(92, 242, 208, 0.14), transparent 34%),
+    linear-gradient(156deg, rgba(3, 16, 15, 0.84), rgba(1, 10, 10, 0.94));
+  --case-visual-bg:
+    radial-gradient(circle at 50% 18%, rgba(92, 242, 208, 0.16), rgba(1, 14, 12, 0.74) 55%),
+    linear-gradient(152deg, rgba(2, 15, 14, 0.95), rgba(1, 10, 9, 0.96));
+  --case-signal-bg: rgba(2, 19, 14, 0.86);
+  --case-chip-bg: rgba(92, 242, 208, 0.09);
+  --case-chip-border: rgba(92, 242, 208, 0.32);
+  --case-link-bg: rgba(92, 242, 208, 0.08);
+  --case-link-border: rgba(92, 242, 208, 0.34);
+  --case-motion:
+    linear-gradient(65deg, rgba(92, 242, 208, 0.08), transparent 48%),
+    radial-gradient(circle at 82% 18%, rgba(255, 172, 107, 0.16), transparent 30%);
+}
+
+.project-card-agents {
+  --case-accent: #9bffb4;
+  --case-contrast: #e6ffec;
+  --case-border: rgba(155, 255, 180, 0.34);
+  --case-card-bg:
+    radial-gradient(circle at 100% 100%, rgba(255, 211, 122, 0.12), transparent 38%),
+    linear-gradient(156deg, rgba(3, 16, 11, 0.85), rgba(1, 9, 7, 0.95));
+  --case-visual-bg:
+    radial-gradient(circle at 16% 16%, rgba(155, 255, 180, 0.18), rgba(1, 14, 10, 0.72) 50%),
+    linear-gradient(152deg, rgba(2, 16, 11, 0.96), rgba(1, 9, 7, 0.97));
+  --case-signal-bg: rgba(2, 20, 12, 0.88);
+  --case-chip-bg: rgba(155, 255, 180, 0.08);
+  --case-chip-border: rgba(155, 255, 180, 0.33);
+  --case-link-bg: rgba(155, 255, 180, 0.08);
+  --case-link-border: rgba(155, 255, 180, 0.36);
+  --case-motion:
+    radial-gradient(circle at 20% 80%, rgba(155, 255, 180, 0.16), transparent 48%),
+    radial-gradient(circle at 76% 24%, rgba(255, 211, 122, 0.16), transparent 44%);
 }
 
 .project-card h3 {
-  color: var(--green);
+  color: var(--case-accent);
   font-size: 1.55rem;
 }
 
 .case-visual {
   position: relative;
-  border: 1px solid rgba(72, 255, 130, 0.2);
+  border: 1px solid var(--case-border);
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 0.9rem;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(72, 255, 130, 0.18), rgba(2, 16, 10, 0.7) 50%),
-    linear-gradient(160deg, rgba(4, 20, 13, 0.9), rgba(1, 11, 8, 0.95));
-}
-
-.project-card-automation .case-visual {
-  border-color: rgba(72, 255, 130, 0.28);
-  background:
-    radial-gradient(circle at 78% 18%, rgba(72, 255, 130, 0.22), rgba(1, 14, 10, 0.62) 52%),
-    linear-gradient(152deg, rgba(2, 18, 12, 0.94), rgba(1, 10, 8, 0.96));
+  background: var(--case-visual-bg);
 }
 
 .project-card-backend .case-visual {
-  border-color: rgba(82, 210, 255, 0.24);
-  background:
-    radial-gradient(circle at 24% 84%, rgba(82, 210, 255, 0.18), rgba(1, 12, 10, 0.72) 50%),
-    linear-gradient(152deg, rgba(3, 17, 19, 0.94), rgba(1, 10, 8, 0.96));
-}
-
-.project-card-observability .case-visual {
-  border-color: rgba(110, 255, 202, 0.24);
-  background:
-    radial-gradient(circle at 50% 18%, rgba(110, 255, 202, 0.14), rgba(1, 14, 12, 0.74) 55%),
-    linear-gradient(152deg, rgba(2, 15, 14, 0.95), rgba(1, 10, 9, 0.96));
-}
-
-.project-card-agents .case-visual {
-  border-color: rgba(118, 255, 170, 0.26);
-  background:
-    radial-gradient(circle at 16% 16%, rgba(118, 255, 170, 0.15), rgba(1, 14, 10, 0.72) 50%),
-    linear-gradient(152deg, rgba(2, 16, 11, 0.96), rgba(1, 9, 7, 0.97));
+  border-radius: 9px;
 }
 
 .case-visual::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(72, 255, 130, 0.02) 0px,
-    rgba(72, 255, 130, 0.02) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(72, 255, 130, 0.03) 0px,
+      rgba(72, 255, 130, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
   mix-blend-mode: screen;
-  animation: case-scan 7s linear infinite;
+  animation: case-scan 8s linear infinite;
   pointer-events: none;
 }
 
 .project-card-backend .case-visual::after {
   background:
-    linear-gradient(90deg, rgba(82, 210, 255, 0.06), transparent 32%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(138, 214, 255, 0.06) 0px,
+      rgba(138, 214, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 32px
+    ),
     repeating-linear-gradient(
       180deg,
-      rgba(82, 210, 255, 0.025) 0px,
-      rgba(82, 210, 255, 0.025) 1px,
+      rgba(138, 214, 255, 0.05) 0px,
+      rgba(138, 214, 255, 0.05) 1px,
       transparent 1px,
-      transparent 4px
+      transparent 24px
     );
+  animation: case-grid-drift 12s linear infinite;
 }
 
 .project-card-observability .case-visual::after {
   background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(110, 255, 202, 0.03) 0px,
-      rgba(110, 255, 202, 0.03) 1px,
-      transparent 1px,
-      transparent 5px
-    ),
-    repeating-linear-gradient(
-      180deg,
-      rgba(110, 255, 202, 0.03) 0px,
-      rgba(110, 255, 202, 0.03) 1px,
-      transparent 1px,
-      transparent 5px
+    linear-gradient(
+      68deg,
+      rgba(92, 242, 208, 0.08) 0%,
+      transparent 36%,
+      rgba(255, 172, 107, 0.1) 100%
     );
-  animation: case-scan-reverse 10s linear infinite;
+  animation: case-pulse 4.5s ease-in-out infinite;
 }
 
 .project-card-agents .case-visual::after {
   background:
-    linear-gradient(180deg, rgba(118, 255, 170, 0.05), transparent 55%),
+    radial-gradient(circle at 16% 78%, rgba(155, 255, 180, 0.08), transparent 48%),
+    radial-gradient(circle at 82% 20%, rgba(255, 211, 122, 0.1), transparent 42%),
     repeating-linear-gradient(
       180deg,
-      rgba(118, 255, 170, 0.02) 0px,
-      rgba(118, 255, 170, 0.02) 1px,
+      rgba(155, 255, 180, 0.028) 0px,
+      rgba(155, 255, 180, 0.028) 1px,
       transparent 1px,
-      transparent 3px
+      transparent 5px
     );
+  animation: case-orbit 11s linear infinite;
 }
 
 .case-visual img {
@@ -589,80 +678,106 @@ h2 span {
 }
 
 .case-visual-still {
-  opacity: 0.8;
+  opacity: 0.86;
   transition: transform 0.42s ease, opacity 0.42s ease;
+  filter: saturate(1.04);
 }
 
 .case-visual-motion {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transform: scale(1.02);
+  opacity: 0.62;
+  transform: scale(1.02) translateY(0);
   transition: transform 0.42s ease, opacity 0.35s ease;
+  background: var(--case-motion);
   pointer-events: none;
 }
 
 .project-card-backend .case-visual-motion {
-  transform: translateX(6%) scale(1.03);
+  opacity: 0.7;
+  transform: scale(1.03) translateX(4%);
 }
 
 .project-card-observability .case-visual-motion {
-  filter: hue-rotate(15deg) saturate(1.08);
+  opacity: 0.64;
+  transform: scale(1.02) translateX(-2%);
 }
 
 .project-card-agents .case-visual-motion {
-  filter: saturate(1.16) contrast(1.05);
+  opacity: 0.72;
+  transform: scale(1.03) translateY(2%);
 }
 
 .project-card:hover .case-visual-still {
   transform: scale(1.04);
-  opacity: 0;
+  opacity: 0.22;
 }
 
 .project-card:hover .case-visual-motion {
   transform: scale(1.02);
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .project-card-backend:hover .case-visual-motion {
   transform: translateX(0) scale(1.02);
 }
 
-.project-card-agents:hover .case-visual-still {
-  transform: scale(1.02);
-  opacity: 0.05;
+.project-card-observability:hover .case-visual-motion {
+  transform: scale(1.02) translateX(1%);
+}
+
+.project-card-agents:hover .case-visual-motion {
+  transform: scale(1.03) translateY(-2%);
 }
 
 .case-visual-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.68) 100%),
-    radial-gradient(circle at 80% 20%, rgba(72, 255, 130, 0.25), transparent 55%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0.72) 100%),
+    radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--case-accent) 30%, transparent), transparent 55%);
   pointer-events: none;
 }
 
 .project-card-backend .case-visual-overlay {
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0.7) 100%),
-    radial-gradient(circle at 15% 20%, rgba(82, 210, 255, 0.2), transparent 52%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04) 38%, rgba(0, 0, 0, 0.72) 100%),
+    radial-gradient(circle at 15% 20%, rgba(138, 214, 255, 0.2), transparent 52%);
 }
 
 .project-card-observability .case-visual-overlay {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.04) 36%, rgba(0, 0, 0, 0.72) 100%),
-    radial-gradient(circle at 50% 14%, rgba(110, 255, 202, 0.16), transparent 56%);
+    radial-gradient(circle at 50% 14%, rgba(92, 242, 208, 0.16), transparent 56%);
 }
 
 .project-card-agents .case-visual-overlay {
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.02) 42%, rgba(0, 0, 0, 0.72) 100%),
-    radial-gradient(circle at 85% 20%, rgba(118, 255, 170, 0.2), transparent 52%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02) 34%, rgba(0, 0, 0, 0.76) 100%),
+    radial-gradient(circle at 85% 20%, rgba(155, 255, 180, 0.2), transparent 52%);
+}
+
+.case-identity {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  margin: 0;
+  z-index: 2;
+  border: 1px solid var(--case-border);
+  border-radius: 999px;
+  padding: 0.2rem 0.54rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--case-contrast);
+  background: color-mix(in srgb, var(--case-accent) 16%, rgba(2, 12, 8, 0.9));
 }
 
 @media (prefers-reduced-motion: reduce) {
   .case-visual-motion {
-    display: none;
+    opacity: 0.45;
+    transform: none;
   }
 
   .project-card:hover .case-visual-still {
@@ -683,10 +798,10 @@ h2 span {
 }
 
 .case-signals span {
-  border: 1px solid rgba(72, 255, 130, 0.28);
-  border-radius: 999px;
-  background: rgba(1, 15, 9, 0.85);
-  color: #d2fce3;
+  border: 1px solid var(--case-border);
+  border-radius: var(--case-signal-shape);
+  background: var(--case-signal-bg);
+  color: var(--case-contrast);
   font-size: 0.76rem;
   font-weight: 600;
   padding: 0.24rem 0.5rem;
@@ -711,6 +826,34 @@ h2 span {
   }
 }
 
+@keyframes case-grid-drift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes case-pulse {
+  0%,
+  100% {
+    opacity: 0.48;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes case-orbit {
+  0% {
+    transform: rotate(0deg) scale(1.02);
+  }
+  100% {
+    transform: rotate(1deg) scale(1.02);
+  }
+}
+
 .chip-wrap {
   margin-top: 0.9rem;
   display: flex;
@@ -719,11 +862,11 @@ h2 span {
 }
 
 .chip {
-  border: 1px solid var(--line);
+  border: 1px solid var(--case-chip-border);
   border-radius: 999px;
   padding: 0.34rem 0.68rem;
-  color: #b6e8ca;
-  background: rgba(72, 255, 130, 0.06);
+  color: var(--case-contrast);
+  background: var(--case-chip-bg);
   font-size: 0.92rem;
 }
 
@@ -853,35 +996,12 @@ h2 span {
 
 .pill {
   font-size: 0.82rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--case-border);
   border-radius: 999px;
   padding: 0.22rem 0.55rem;
-  color: var(--green);
+  color: var(--case-accent);
+  background: color-mix(in srgb, var(--case-accent) 14%, rgba(2, 11, 8, 0.94));
   white-space: nowrap;
-}
-
-.pill-automation {
-  color: #48ff82;
-  border-color: rgba(72, 255, 130, 0.35);
-  background: rgba(72, 255, 130, 0.08);
-}
-
-.pill-backend {
-  color: #86e4ff;
-  border-color: rgba(134, 228, 255, 0.35);
-  background: rgba(88, 214, 255, 0.1);
-}
-
-.pill-observability {
-  color: #8dffd2;
-  border-color: rgba(141, 255, 210, 0.35);
-  background: rgba(110, 255, 202, 0.1);
-}
-
-.pill-agents {
-  color: #98ffb8;
-  border-color: rgba(152, 255, 184, 0.35);
-  background: rgba(118, 255, 170, 0.1);
 }
 
 .project-card p {
@@ -896,7 +1016,7 @@ h2 span {
 
 .case-context strong,
 .case-delivered strong {
-  color: #d1fbe2;
+  color: var(--case-contrast);
 }
 
 .case-impact {
@@ -911,26 +1031,6 @@ h2 span {
   line-height: 1.55;
 }
 
-.case-signals-backend span {
-  border-radius: 10px;
-  border-color: rgba(134, 228, 255, 0.35);
-  background: rgba(6, 25, 33, 0.84);
-  color: #c7eeff;
-}
-
-.case-signals-observability span {
-  border-color: rgba(141, 255, 210, 0.34);
-  background: rgba(2, 19, 14, 0.86);
-  color: #d3ffe9;
-  letter-spacing: 0.03em;
-}
-
-.case-signals-agents span {
-  border-color: rgba(152, 255, 184, 0.34);
-  background: rgba(2, 20, 12, 0.88);
-  color: #dcffe8;
-}
-
 .proof-links {
   margin-top: 0.9rem;
   display: flex;
@@ -940,17 +1040,17 @@ h2 span {
 
 .proof-links a {
   text-decoration: none;
-  border: 1px solid rgba(72, 255, 130, 0.3);
+  border: 1px solid var(--case-link-border);
   border-radius: 999px;
   padding: 0.34rem 0.66rem;
   font-size: 0.85rem;
-  color: #c3f4d8;
-  background: rgba(72, 255, 130, 0.07);
+  color: var(--case-contrast);
+  background: var(--case-link-bg);
   transition: border-color 0.22s ease, transform 0.22s ease;
 }
 
 .proof-links a:hover {
-  border-color: rgba(72, 255, 130, 0.55);
+  border-color: var(--case-accent);
   transform: translateY(-1px);
 }
 
