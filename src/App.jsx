@@ -123,7 +123,7 @@ const severityClassName = (severity) => {
 
 const DISCOVERY_CALL_URL = 'https://cal.com/pierre-daguier/discovery-call';
 const BRISBANE_TIMEZONE = 'Australia/Brisbane';
-const BRISBANE_WINDOW_START_HOUR = 8;
+const BRISBANE_WINDOW_START_HOUR = 9;
 const BRISBANE_WINDOW_END_HOUR = 20;
 
 const getBrisbaneClock = () => {
@@ -883,8 +883,8 @@ function App() {
           </p>
           <p className="contact-availability">
             {brisbaneClock.inPreferredCallWindow
-              ? 'Currently within preferred call window (08:00-20:00 Brisbane time).'
-              : 'Currently outside preferred call window. Best call time: 08:00-20:00 Brisbane time.'}
+              ? 'Currently within preferred call window (09:00-20:00 Brisbane time).'
+              : 'Currently outside preferred call window. Best call time: 09:00-20:00 Brisbane time.'}
           </p>
           <div className="contact-quick-actions">
             <a className="btn btn-solid" href={DISCOVERY_CALL_URL}>Discuss a role or project</a>
