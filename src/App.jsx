@@ -892,7 +892,7 @@ function App() {
                 </div>
                 <p>20 minutes to scope delivery, constraints, and next steps.</p>
               </a>
-              <a href="mailto:pierredaguier@gmail.com">
+              <a href="mailto:contact@pierredaguier.com">
                 <div className="contact-link-head">
                   <span className="contact-icon" aria-hidden="true">
                     <img
@@ -907,7 +907,7 @@ function App() {
                   </span>
                   <h3>Gmail</h3>
                 </div>
-                <p>pierredaguier@gmail.com</p>
+                <p>contact@pierredaguier.com</p>
               </a>
               <a href="https://www.linkedin.com/in/pierre-daguier/" target="_blank" rel="noreferrer">
                 <div className="contact-link-head">
@@ -956,7 +956,7 @@ function App() {
           <p className="footer-main">Pierre Daguier · Senior Software Engineer</p>
           <p className="footer-sub">Research-grade systems, automation platforms, and production-ready product delivery.</p>
           <div className="footer-links">
-            <a href="mailto:pierredaguier@gmail.com">Gmail</a>
+            <a href="mailto:contact@pierredaguier.com">Gmail</a>
             <a href="https://www.linkedin.com/in/pierre-daguier/" target="_blank" rel="noreferrer">LinkedIn</a>
             <a href="https://github.com/PierreDaguier" target="_blank" rel="noreferrer">GitHub</a>
           </div>

@@ -36,6 +36,6 @@ npm run preview
 ```
 
 ## Contact
-- Email: pierredaguier@gmail.com
+- Email: contact@pierredaguier.com
 - LinkedIn: https://www.linkedin.com/in/pierre-daguier/
 - GitHub: https://github.com/PierreDaguier
