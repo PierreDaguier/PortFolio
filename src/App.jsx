@@ -205,7 +205,7 @@ const caseStudies = [
     title: 'Production-Ready Go Service Template',
     theme: 'backend',
     label: 'Backend',
-    identity: 'Control Plane',
+    identity: 'Operations Dashboard',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/go-service-template-pro/main/assets/screenshots/overview.png',
     previewUrl: goServicePreview,
     visualAlt: 'Go service template operations overview dashboard',
