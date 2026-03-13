@@ -474,11 +474,94 @@ h2 span {
 
 .project-card {
   padding: 1rem;
+  overflow: hidden;
 }
 
 .project-card h3 {
   color: var(--green);
   font-size: 1.55rem;
+}
+
+.case-visual {
+  position: relative;
+  border: 1px solid rgba(72, 255, 130, 0.2);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(72, 255, 130, 0.18), rgba(2, 16, 10, 0.7) 50%),
+    linear-gradient(160deg, rgba(4, 20, 13, 0.9), rgba(1, 11, 8, 0.95));
+}
+
+.case-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(72, 255, 130, 0.02) 0px,
+    rgba(72, 255, 130, 0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: screen;
+  animation: case-scan 7s linear infinite;
+  pointer-events: none;
+}
+
+.case-visual img {
+  display: block;
+  width: 100%;
+  height: clamp(170px, 28vw, 250px);
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.75;
+  transition: transform 0.42s ease, opacity 0.42s ease;
+}
+
+.project-card:hover .case-visual img {
+  transform: scale(1.025);
+  opacity: 0.88;
+}
+
+.case-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.68) 100%),
+    radial-gradient(circle at 80% 20%, rgba(72, 255, 130, 0.25), transparent 55%);
+  pointer-events: none;
+}
+
+.case-signals {
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: 0.6rem;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.case-signals span {
+  border: 1px solid rgba(72, 255, 130, 0.28);
+  border-radius: 999px;
+  background: rgba(1, 15, 9, 0.85);
+  color: #d2fce3;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.24rem 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+@keyframes case-scan {
+  0% {
+    transform: translateY(-8%);
+  }
+  100% {
+    transform: translateY(8%);
+  }
 }
 
 .chip-wrap {
@@ -1162,6 +1245,10 @@ h2 span {
   .project-card header {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .case-visual img {
+    height: clamp(160px, 52vw, 210px);
   }
 
   .contact-icon {

@@ -177,6 +177,9 @@ const caseStudies = [
   {
     title: 'Event-Driven Automation Platform',
     label: 'Automation',
+    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/event-driven-automation-platform/main/docs/screenshots/02-dashboard-overview.png',
+    visualAlt: 'Event-driven automation platform dashboard overview',
+    signals: ['Secure webhooks', 'Retry + DLQ flow', 'Traceable execution'],
     context: 'Needed secure webhook ingestion and asynchronous processing for bursty B2B workflows.',
     delivered: 'Built signed webhooks, idempotent event handling, queue workers, retry/backoff, and DLQ safeguards.',
     impact: [
@@ -194,6 +197,9 @@ const caseStudies = [
   {
     title: 'Production-Ready Go Service Template',
     label: 'Backend',
+    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/go-service-template-pro/main/assets/screenshots/overview.png',
+    visualAlt: 'Go service template operations overview dashboard',
+    signals: ['Clean architecture', 'Ops control panel', 'Observability-first'],
     context: 'Teams needed a reusable Go service base without compromising security or operability.',
     delivered: 'Implemented clean architecture, auth, rate limiting, telemetry, and an operations control panel.',
     impact: [
@@ -211,6 +217,9 @@ const caseStudies = [
   {
     title: 'Observability Command Center Demo',
     label: 'Observability',
+    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/observability-command-center-demo/main/docs/architecture/command-center-architecture.svg',
+    visualAlt: 'Observability command center architecture map',
+    signals: ['Incident narrative', 'Signal correlation', 'Stakeholder visibility'],
     context: 'Incident communication needed to work for both engineers and non-technical decision-makers.',
     delivered: 'Shipped correlation views for logs/metrics/traces, alert context, and replayable incident narratives.',
     impact: [
@@ -228,6 +237,9 @@ const caseStudies = [
   {
     title: 'AI Automation Command Center',
     label: 'AI Agents',
+    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/ai-automation-command-center/main/docs/media/demo-dashboard.png',
+    visualAlt: 'AI automation command center dashboard',
+    signals: ['Human approvals', 'Audit trail', 'Agent orchestration'],
     context: 'Automation needed governance: human approvals, traceability, and compliance-friendly records.',
     delivered: 'Orchestrated n8n workflows, AI-agent tasks, approval checkpoints, and audit-oriented event tracking.',
     impact: [
@@ -580,7 +592,7 @@ function App() {
             dependable systems.
           </p>
           <div className="hero-actions">
-            <a className="btn btn-solid" href={DISCOVERY_CALL_URL}>Book a discovery call</a>
+            <a className="btn btn-solid" href={DISCOVERY_CALL_URL}>Start a conversation</a>
             <a className="btn btn-outline" href="#case-studies">View case studies</a>
           </div>
           <div className="stats">
@@ -709,6 +721,22 @@ function App() {
                 style={{ '--reveal-delay': `${index * 90}ms` }}
                 key={project.title}
               >
+                <div className="case-visual">
+                  <img
+                    src={project.visualUrl}
+                    alt={project.visualAlt}
+                    loading="lazy"
+                    onError={(event) => {
+                      event.currentTarget.style.opacity = '0';
+                    }}
+                  />
+                  <div className="case-visual-overlay" aria-hidden="true" />
+                  <div className="case-signals">
+                    {project.signals.map((signal) => (
+                      <span key={signal}>{signal}</span>
+                    ))}
+                  </div>
+                </div>
                 <header>
                   <h3>{project.title}</h3>
                   <span className="pill">{project.label}</span>
@@ -859,8 +887,8 @@ function App() {
               : 'Currently outside preferred call window. Best call time: 08:00-20:00 Brisbane time.'}
           </p>
           <div className="contact-quick-actions">
-            <a className="btn btn-solid" href={DISCOVERY_CALL_URL}>Book a 20-min discovery call</a>
-            <a className="btn btn-outline" href="#case-studies">Review case studies first</a>
+            <a className="btn btn-solid" href={DISCOVERY_CALL_URL}>Discuss a role or project</a>
+            <a className="btn btn-outline" href="#case-studies">Review case studies</a>
           </div>
           <div className="contact-grid">
             <form className="contact-form" action="https://formspree.io/f/mjvdlkbw" method="POST">
@@ -888,9 +916,9 @@ function App() {
               <a href={DISCOVERY_CALL_URL}>
                 <div className="contact-link-head">
                   <span className="contact-icon contact-icon-text" aria-hidden="true">~$</span>
-                  <h3>Discovery Call</h3>
+                  <h3>Start a Conversation</h3>
                 </div>
-                <p>20 minutes to scope delivery, constraints, and next steps.</p>
+                <p>A quick conversation about team fit, role scope, or delivery needs.</p>
               </a>
               <a href="mailto:contact@pierredaguier.com">
                 <div className="contact-link-head">
@@ -948,7 +976,7 @@ function App() {
         </section>
       </main>
       <div className="mobile-cta">
-        <a href={DISCOVERY_CALL_URL}>Book a call</a>
+        <a href={DISCOVERY_CALL_URL}>Start a conversation</a>
         <a href="#case-studies">See case studies</a>
       </div>
       <footer className="site-footer panel">
