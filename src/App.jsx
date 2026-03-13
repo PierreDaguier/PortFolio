@@ -180,8 +180,9 @@ const serviceOfferings = [
 const caseStudies = [
   {
     title: 'Event-Driven Automation Platform',
+    theme: 'automation',
     label: 'Automation',
-    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/event-driven-automation-platform/main/docs/screenshots/02-dashboard-overview.png',
+    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/event-driven-automation-platform/main/docs/screenshots/04-workflow-detail.png',
     previewUrl: eventDrivenPreview,
     visualAlt: 'Event-driven automation platform dashboard overview',
     signals: ['Secure webhooks', 'Retry + DLQ flow', 'Traceable execution'],
@@ -201,8 +202,9 @@ const caseStudies = [
   },
   {
     title: 'Production-Ready Go Service Template',
+    theme: 'backend',
     label: 'Backend',
-    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/go-service-template-pro/main/assets/screenshots/overview.png',
+    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/go-service-template-pro/main/assets/screenshots/live-metrics.png',
     previewUrl: goServicePreview,
     visualAlt: 'Go service template operations overview dashboard',
     signals: ['Clean architecture', 'Ops control panel', 'Observability-first'],
@@ -222,6 +224,7 @@ const caseStudies = [
   },
   {
     title: 'Observability Command Center Demo',
+    theme: 'observability',
     label: 'Observability',
     visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/observability-command-center-demo/main/docs/architecture/command-center-architecture.svg',
     previewUrl: observabilityPreview,
@@ -243,8 +246,9 @@ const caseStudies = [
   },
   {
     title: 'AI Automation Command Center',
+    theme: 'agents',
     label: 'AI Agents',
-    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/ai-automation-command-center/main/docs/media/demo-dashboard.png',
+    visualUrl: 'https://raw.githubusercontent.com/PierreDaguier/ai-automation-command-center/main/docs/media/dashboard-auth.png',
     previewUrl: aiAutomationPreview,
     visualAlt: 'AI automation command center dashboard',
     signals: ['Human approvals', 'Audit trail', 'Agent orchestration'],
@@ -724,12 +728,12 @@ function App() {
           <div className="project-grid">
             {caseStudies.map((project, index) => (
               <article
-                className="project-card reveal"
+                className={`project-card project-card-${project.theme} reveal`}
                 data-reveal
                 style={{ '--reveal-delay': `${index * 90}ms` }}
                 key={project.title}
               >
-                <div className="case-visual">
+                <div className={`case-visual case-visual-${project.theme}`}>
                   <img
                     className="case-visual-still"
                     src={project.visualUrl}
@@ -757,7 +761,7 @@ function App() {
                     />
                   ) : null}
                   <div className="case-visual-overlay" aria-hidden="true" />
-                  <div className="case-signals">
+                  <div className={`case-signals case-signals-${project.theme}`}>
                     {project.signals.map((signal) => (
                       <span key={signal}>{signal}</span>
                     ))}
@@ -765,7 +769,7 @@ function App() {
                 </div>
                 <header>
                   <h3>{project.title}</h3>
-                  <span className="pill">{project.label}</span>
+                  <span className={`pill pill-${project.theme}`}>{project.label}</span>
                 </header>
                 <p className="case-context"><strong>Context:</strong> {project.context}</p>
                 <p className="case-delivered"><strong>Delivered:</strong> {project.delivered}</p>
